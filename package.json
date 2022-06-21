@@ -2,17 +2,6 @@
   "name": "truffle-client",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.6.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-scripts": "^4.0.3",
-    "truffle": "^5.5.18",
-    "web3": "^1.7.3"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -20,7 +9,10 @@
     "eject": "react-scripts eject",
     "truffle:compile": "truffle compile",
     "truffle:migrate": "truffle migrate",
-    "truffle:test": "truffle test"
+    "truffle:test": "truffle test",
+    "truffle:coverage": "truffle run coverage",
+    "pretruffle:test": "npm run create-types",
+    "create-types": "typechain ./client/src/contracts/**/*.json --target=truffle-v5"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +31,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-scripts": "^4.0.3",
+    "web3": "^1.7.3"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.6.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@typechain/truffle-v5": "^8.0.1",
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.0.0",
+    "solidity-coverage": "^0.8.0-beta.1",
+    "truffle": "^5.5.18",
+    "typechain": "^8.1.0"
   }
 }

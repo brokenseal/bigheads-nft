@@ -1,2 +1,5 @@
 node_modules
 client/src/contracts
+types
+coverage
+coverage.json

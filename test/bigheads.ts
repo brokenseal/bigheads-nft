@@ -7,10 +7,10 @@ contract('BigHeads', async (accounts) => {
 
     await instance.mint(accounts[0], 'fake url', {
       from: accounts[0],
-      value: Web3.utils.toWei("0.01"),
+      value: Web3.utils.toWei('0.01'),
     })
 
     const count = await instance.count()
-    assert.equal(count, 1)
+    assert.equal(Number(count), 1)
   })
 })
