@@ -1,3 +1,8 @@
+// required for migration files
+require('ts-node').register({
+  files: true,
+})
+
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
