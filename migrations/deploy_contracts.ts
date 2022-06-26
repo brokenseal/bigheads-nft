@@ -4,7 +4,7 @@ module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
   return async (
     deployer: Truffle.Deployer,
     network: Network,
-    accounts: string[],
+    _accounts: string[],
   ) => {
     const BigHeads = artifacts.require('BigHeads')
 
