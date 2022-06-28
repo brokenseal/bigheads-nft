@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["ES2018", "DOM"],
-    "module": "CommonJS",
+    "module": "esnext",
     "target": "ES2018",
     "jsx": "react-jsx",
     "strict": true,
@@ -15,8 +15,9 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "noEmit": true
+    "noEmit": true,
+    "isolatedModules": true
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "build", "cache", "artifacts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "build", "cache", "artifacts", "dist"]
 }

@@ -1,5 +1,5 @@
 // required for migration files
-require('ts-node').register({ files: true })
+require('ts-node').register({ files: true, project: 'tsconfig.truffle.json' })
 
 /**
  * Use this file to configure your truffle project. It's seeded with some
