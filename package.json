@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:ts": "tsc -p .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -13,7 +14,7 @@
     "truffle:test": "truffle test",
     "truffle:coverage": "truffle run coverage",
     "pretruffle:test": "npm run create-types",
-    "create-types": "typechain ./client/src/contracts/**/*.json --target=truffle-v5"
+    "create-types": "typechain ./src/contracts/**/*.json --target=truffle-v5"
   },
   "eslintConfig": {
     "extends": [
@@ -34,6 +35,7 @@
     ]
   },
   "dependencies": {
+    "@metamask/providers": "^9.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "^4.0.3",
@@ -48,6 +50,8 @@
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "solidity-coverage": "^0.8.0-beta.1",
     "truffle": "^5.5.18",
     "ts-node": "^10.8.1",

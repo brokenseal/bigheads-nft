@@ -13,7 +13,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
 
     mapping(string => uint8) private existingURIs;
 
-    constructor() ERC721("BigHeads", "PND") {}
+    constructor() ERC721("BigHeads", "BIGH") {}
 
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://";
@@ -28,6 +28,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
 
     // The following functions are overrides required by Solidity.
 
+    // istanbul ignore next
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }

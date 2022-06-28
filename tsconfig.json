@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "lib": ["ES2018"],
+    "lib": ["ES2018", "DOM"],
     "module": "CommonJS",
     "target": "ES2018",
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
-    "types": ["@types/node", "@types/chai", "@types/mocha"],
-    "typeRoots": ["./node_modules/@types", "./types"]
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "types": ["@types/chai"],
+    "typeRoots": ["./types", "./src/types.ts"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "build", "cache", "artifacts"]

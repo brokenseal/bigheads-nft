@@ -1,5 +1,6 @@
 node_modules
-client/src/contracts
+src/contracts
 types
 coverage
 coverage.json
+dist
