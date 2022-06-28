@@ -8,8 +8,14 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "outDir": "dist",
-    "types": ["@types/chai"],
-    "typeRoots": ["./types", "./src/types.ts"]
+    "typeRoots": ["./types", "./src/types.ts"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "noEmit": true
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "build", "cache", "artifacts"]
