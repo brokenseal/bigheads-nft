@@ -46,7 +46,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         return existingURIs[uri] == 1;
     }
 
-    function mint(address recipient, string memory uri) public payable returns (uint256) {
+    function mint(address recipient, string memory uri) public payable returns (bool, uint256) {
         require(!isContentOwned(uri), "NFT already minted!");
         require(msg.value >= 0.01 ether, "Minimum amount of ether to mint: 0.01");
 
@@ -57,7 +57,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         _mint(recipient, newItemId);
         _setTokenURI(newItemId, uri);
 
-        return newItemId;
+        return (true, newItemId);
     }
 
     function count() public view returns(uint256) {

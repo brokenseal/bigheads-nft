@@ -1,4 +1,4 @@
 import { useContext } from 'react'
-import { EthContext } from './EthProvider'
+import { EthContext } from './EthContext'
 
 export const useEth = () => useContext(EthContext)

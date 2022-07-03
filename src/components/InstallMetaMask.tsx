@@ -1,4 +1,4 @@
-export function Install() {
+export function InstallMetaMask() {
   return (
     <div>
       <h3>Follow the link to install MetaMask</h3>

@@ -1,10 +1,19 @@
 import "./App.css";
-import { Home, Install } from "./components";
+import { Home, InstallMetaMask } from "./components";
+import { AppStateProvider } from "./state";
+import { EthProvider } from "./eth-context";
 
 export function App() {
-  if (!window.ethereum) {
-    return <Install />;
-  }
-
-  return <Home />;
+  return (
+    <AppStateProvider>
+      {!window.ethereum && <InstallMetaMask />}
+      {window.ethereum && (
+        <>
+          <EthProvider>
+            <Home />
+          </EthProvider>
+        </>
+      )}
+    </AppStateProvider>
+  );
 }
