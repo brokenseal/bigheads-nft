@@ -1,6 +1,7 @@
 node_modules
 src/contracts
-types
+/types/truffle-contracts
 coverage
 coverage.json
 dist
+src/bigheads/generated/*.svg

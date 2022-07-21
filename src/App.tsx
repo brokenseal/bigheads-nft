@@ -6,8 +6,8 @@ import { EthProvider } from "./eth-context";
 export function App() {
   return (
     <AppStateProvider>
-      {!window.ethereum && <InstallMetaMask />}
-      {window.ethereum && (
+      {!(window as any).ethereum && <InstallMetaMask />}
+      {(window as any).ethereum && (
         <>
           <EthProvider>
             <Home />

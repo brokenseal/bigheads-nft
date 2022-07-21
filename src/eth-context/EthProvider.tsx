@@ -13,7 +13,7 @@ export function EthProvider({ children }: EthProviderProps) {
   const [ethContextState, setEthContextState] = useState<EthContextState>({});
 
   const init = useCallback(async () => {
-    // if present in the page, Web3.givenProvider will equal window.ethereum
+    // if present in the page, Web3.givenProvider will equal (window as any).ethereum
     const provider = Web3.givenProvider || localGanacheProvider;
 
     const web3 = new Web3(provider);
@@ -56,10 +56,10 @@ export function EthProvider({ children }: EthProviderProps) {
   useEffect(() => {
     const events = ["chainChanged", "accountsChanged"];
 
-    events.forEach((e) => window.ethereum?.on(e, handleChange));
+    events.forEach((e) => (window as any).ethereum?.on(e, handleChange));
 
     return () => {
-      events.forEach((e) => window.ethereum?.removeListener(e, handleChange));
+      events.forEach((e) => (window as any).ethereum?.removeListener(e, handleChange));
     };
   }, [handleChange]);
 

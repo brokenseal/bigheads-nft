@@ -30,7 +30,13 @@ export function Home() {
           <button onClick={handleMintedNftUpdate}>Update count</button>
           <div>
             {new Array(bigHeadsCount + 1).fill(null).map((_, i) => {
-              return <NFTImage key={i} tokenId={i} />;
+              return (
+                <NFTImage
+                  key={i}
+                  tokenId={i}
+                  onMinted={handleMintedNftUpdate}
+                />
+              );
             })}
           </div>
         </div>
@@ -39,9 +45,9 @@ export function Home() {
   );
 }
 
-type NFTImageProps = { tokenId: number };
+type NFTImageProps = { tokenId: number; onMinted: () => void };
 
-function NFTImage({ tokenId }: NFTImageProps) {
+function NFTImage({ tokenId, onMinted }: NFTImageProps) {
   const contentId = "QmfKtL2wpvRYccs2CeCM8EYzrhZgBqGe1zxETxVh5vncUH";
   const metaDataId = `${contentId}/${tokenId}`;
   const metaDataURI = `${metaDataId}.json`;
@@ -70,7 +76,7 @@ function NFTImage({ tokenId }: NFTImageProps) {
   }, [getMintedStatus]);
 
   const mintNewBigHead = useCallback(async () => {
-    const transactionReceipt: TransactionReceipt =
+    const transactionReceipt: TransactionReceipt | undefined =
       await ethContextState?.eth?.contract?.methods
         .mint(ethContextState.eth?.accounts[0], metaDataURI)
         .send({
@@ -78,7 +84,7 @@ function NFTImage({ tokenId }: NFTImageProps) {
           value: Web3.utils.toWei("0.01"),
         });
     const minedTokenId = (
-      transactionReceipt.events?.Transfer.returnValues as {
+      transactionReceipt?.events?.Transfer.returnValues as {
         from: string;
         to: string;
         tokenId: string;
@@ -86,6 +92,10 @@ function NFTImage({ tokenId }: NFTImageProps) {
     ).tokenId;
     console.log(minedTokenId, transactionReceipt);
     getMintedStatus();
+
+    if (transactionReceipt && minedTokenId) {
+      onMinted();
+    }
   }, [
     ethContextState?.eth?.accounts,
     ethContextState?.eth?.contract,
