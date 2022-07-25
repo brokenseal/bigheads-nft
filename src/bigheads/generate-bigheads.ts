@@ -191,7 +191,11 @@ export const generateUniqueTraits = () => {
 
   while (true) {
     const newTraits = generateNewRandomTraits()
-    const id = JSON.stringify(newTraits)
+    const id = JSON.stringify(
+      Object.entries(newTraits).sort((first, second) =>
+        first[0].localeCompare(second[0]),
+      ),
+    )
 
     if (generatedCombinations[id]) {
       duplicatesCount += 1
@@ -204,7 +208,7 @@ export const generateUniqueTraits = () => {
   }
 }
 
-const generateRandomUniqueTraits = (bigHeadsCount = 100) =>
+const generateRandomUniqueTraits = (bigHeadsCount = 10_000) =>
   new Array(bigHeadsCount).fill(null).map(() => generateUniqueTraits())
 
 const prepareDomAndFolders = () => {

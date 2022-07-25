@@ -49,7 +49,7 @@ const weightedMouthsMapTrait: WeightedTrait<typeof mouthsMap> = {
 }
 
 const clothingMapTrait: WeightedTrait<typeof clothingMap> = {
-  naked: 0.01,
+  naked: 0.001,
   tankTop: 0.02,
   shirt: 0.05,
   dress: 0.1,
