@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build:ts": "tsc -p .",
+    "build:ts:watch": "npm run build:ts -- --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

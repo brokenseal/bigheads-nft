@@ -218,7 +218,8 @@ const prepareDomAndFolders = () => {
   const fileName = fileURLToPath(import.meta.url)
   const dirName = dirname(fileName)
   const rootDir = join(dirName, '../../')
-  const generatedDirPath = join(rootDir, 'src', 'bigheads', 'generated')
+  const generatedDirPath = join(rootDir, 'public', 'bigheads', 'generated')
+  // const generatedDirPath = join(rootDir, 'src', 'bigheads', 'generated')
 
   rmSync(generatedDirPath, { recursive: true, force: false })
   mkdirSync(generatedDirPath)
