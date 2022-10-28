@@ -5,5 +5,5 @@ coverage
 coverage.json
 dist
 src/bigheads/generated/*.svg
+public/bigheads/generated/*.svg
 build
-
