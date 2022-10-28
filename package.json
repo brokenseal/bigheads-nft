@@ -19,8 +19,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -37,25 +36,23 @@
   },
   "dependencies": {
     "@bigheads/core": "^0.3.3",
-    "@metamask/providers": "^9.0.0",
-    "@types/jsdom": "^16.2.14",
-    "jsdom": "^17.0.0",
+    "@metamask/providers": "^10.0.0",
+    "@types/jsdom": "^20.0.0",
+    "jsdom": "^20.0.0",
     "mersenne": "^0.0.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "^4.0.3",
     "web3": "^1.7.3",
     "weighted": "^1.0.0"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^12.8.3",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
     "@typechain/truffle-v5": "^8.0.1",
     "@types/chai": "^4.3.1",
-    "@types/jest": "^28.1.5",
-    "@types/mocha": "^9.1.1",
+    "@types/mocha": "^10.0.0",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",

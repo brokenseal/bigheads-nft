@@ -101,6 +101,7 @@ function NFTImage({ tokenId, onMinted }: NFTImageProps) {
     ethContextState?.eth?.contract,
     metaDataURI,
     getMintedStatus,
+    onMinted,
   ]);
 
   if (!isMinted) {
