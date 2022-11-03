@@ -1,19 +1,31 @@
-import "./App.css";
-import { Home, InstallMetaMask } from "./components";
-import { AppStateProvider } from "./state";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ErrorPage, Home, InstallMetaMask } from "./components";
 import { EthProvider } from "./eth-context";
+import { AppStateProvider } from "./state";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <AppStateProvider>
+        <EthProvider>
+          <Home />
+        </EthProvider>
+      </AppStateProvider>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/install-metamask",
+    element: <InstallMetaMask />,
+    errorElement: <ErrorPage />,
+  },
+]);
 
 export function App() {
-  return (
-    <AppStateProvider>
-      {!(window as any).ethereum && <InstallMetaMask />}
-      {(window as any).ethereum && (
-        <>
-          <EthProvider>
-            <Home />
-          </EthProvider>
-        </>
-      )}
-    </AppStateProvider>
-  );
+  if (!(window as any).ethereum) {
+    return <InstallMetaMask />;
+  }
+
+  return <RouterProvider router={router} />;
 }
