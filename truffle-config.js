@@ -36,6 +36,7 @@ module.exports = {
   compilers: {
     solc: {
       version: '0.8.14',
+      // version: '/Users/davidecallegari/Development/projects/ethereum/solc-macos',
     },
   },
   plugins: ['solidity-coverage'],

@@ -7,3 +7,4 @@ dist
 src/bigheads/generated/*.svg
 public/bigheads/generated/*.svg
 build
+.DS_Store
