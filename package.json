@@ -1,8 +1,7 @@
 {
-  "name": "truffle-client",
+  "name": "bigheads-nft-client",
   "version": "0.1.0",
   "private": true,
-  "--type": "module",
   "scripts": {
     "build:ts": "tsc -p .",
     "build:css": "npx tailwindcss -i ./src/tailwind.css -o ./public/tailwind.css --watch",
@@ -11,13 +10,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "truffle:watch": "truffle watch",
-    "truffle:compile": "truffle compile",
-    "truffle:migrate": "truffle migrate",
-    "truffle:test": "truffle test",
-    "truffle:coverage": "truffle run coverage",
-    "pretruffle:test": "npm run create-types",
-    "create-types": "typechain ./src/contracts/**/*.json --target=truffle-v5"
+    "create-types": "typechain ./src/contracts/**/*.json --target=truffle-v5",
+    "clean": "rm -rf ./types/truffle-contracts build ./src/contracts ./src/bigheads/generated"
   },
   "eslintConfig": {
     "extends": [

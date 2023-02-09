@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2018", "DOM"],
+    "module": "CommonJS",
+    "target": "ES2018",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "typeRoots": ["./types", "./src/types.ts"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "build", "cache", "artifacts", "dist"]
+}

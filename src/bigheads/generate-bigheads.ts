@@ -1,11 +1,11 @@
 import { AvatarProps, BigHead } from '@bigheads/core'
 import { mkdirSync, rmSync, writeFileSync } from 'fs'
 import * as jsdom from 'jsdom'
-import { dirname, join } from 'path'
+import { join } from 'path'
 import React from 'react'
 import { render } from 'react-dom'
-import { fileURLToPath } from 'url'
-import { generateNewRandomTraits } from './traits.js'
+import { bigHeadsCount, generatedDirPath } from './config'
+import { generateNewRandomTraits } from './traits'
 
 type RequiredAvatarProps = Omit<
   Required<AvatarProps>,
@@ -208,18 +208,18 @@ export const generateUniqueTraits = () => {
   }
 }
 
-const generateRandomUniqueTraits = (bigHeadsCount = 10_000) =>
+const generateRandomUniqueTraits = (bigHeadsCount: number) =>
   new Array(bigHeadsCount).fill(null).map(() => generateUniqueTraits())
 
 const prepareDomAndFolders = () => {
   const dom = new jsdom.JSDOM("<html><body><div id='root'></div></body></html>")
   ;(global as any).window = dom.window
 
-  const fileName = fileURLToPath(import.meta.url)
-  const dirName = dirname(fileName)
-  const rootDir = join(dirName, '../../')
+  // const fileName = fileURLToPath(import.meta.url)
+  // const dirName = dirname(fileName)
+  // const rootDir = join(dirName, '../../')
 
-  const generatedDirPath = join(rootDir, 'public', 'bigheads', 'generated')
+  // const generatedDirPath = join(rootDir, 'public', 'bigheads', 'generated')
   // const generatedDirPath = join(rootDir, 'src', 'bigheads', 'generated')
 
   rmSync(generatedDirPath, { recursive: true, force: false })
@@ -231,8 +231,9 @@ const prepareDomAndFolders = () => {
 const generateBigHeadSvgs = (
   container: HTMLElement,
   generatedDirPath: string,
+  bigHeadsCount: number,
 ) => {
-  const traits = generateRandomUniqueTraits()
+  const traits = generateRandomUniqueTraits(bigHeadsCount)
   const generatedTraitsStatistics = createGeneratedTraitsStatistics()
   const traitsPerGeneratedFile: { [key: string]: AvatarProps } = {}
 
@@ -284,6 +285,7 @@ const main = () => {
   } = generateBigHeadSvgs(
     dom.window.document.getElementById('root')!,
     generatedDirPath,
+    bigHeadsCount,
   )
 
   svgFileNameContentList.forEach(({ path, content }) => {

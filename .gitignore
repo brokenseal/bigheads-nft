@@ -1,10 +1,9 @@
 node_modules
 src/contracts
-/types/truffle-contracts
+types/truffle-contracts
 coverage
 coverage.json
 dist
-src/bigheads/generated/*.svg
 public/bigheads/generated/*.svg
 build
 .DS_Store
