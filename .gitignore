@@ -4,6 +4,6 @@ types/truffle-contracts
 coverage
 coverage.json
 dist
-public/bigheads/generated/*.svg
+public/bigheads/generated
 build
 .DS_Store
