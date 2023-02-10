@@ -9,9 +9,6 @@
     "test": "truffle test",
     "coverage": "truffle run coverage"
   },
-  "dependencies": {
-    "mersenne": "^0.0.4"
-  },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",
     "@typechain/truffle-v5": "^8.0.1",

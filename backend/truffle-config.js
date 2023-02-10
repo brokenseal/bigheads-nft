@@ -27,7 +27,7 @@ require('ts-node').register({ files: true })
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
-  contracts_build_directory: '../src/contracts',
+  contracts_build_directory: '../frontend/src/contracts',
   // development: {
   //   host: '127.0.0.1', // Localhost (default: none)
   //   port: 8545, // Standard Ethereum port (default: none)
