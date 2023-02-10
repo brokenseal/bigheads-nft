@@ -4,8 +4,8 @@ import * as jsdom from 'jsdom'
 import { join } from 'path'
 import React from 'react'
 import { render } from 'react-dom'
-import { bigHeadsCount, generatedDirPath } from './config'
-import { generateNewRandomTraits } from './traits'
+import { bigHeadsCount, generatedDirPath } from './config.js' // ts-node FTW ... ?
+import { generateNewRandomTraits } from './traits.js' // ts-node FTW ... ?
 
 type RequiredAvatarProps = Omit<
   Required<AvatarProps>,
@@ -222,7 +222,7 @@ const prepareDomAndFolders = () => {
   // const generatedDirPath = join(rootDir, 'public', 'bigheads', 'generated')
   // const generatedDirPath = join(rootDir, 'src', 'bigheads', 'generated')
 
-  rmSync(generatedDirPath, { recursive: true, force: false })
+  rmSync(generatedDirPath, { recursive: true, force: true })
   mkdirSync(generatedDirPath)
 
   return { dom, generatedDirPath }
