@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "bigheads-nft-client": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "npm run prepare --workspaces",
+    "start": "npm run start -w frontend"
   },
   "repository": {
     "type": "git",

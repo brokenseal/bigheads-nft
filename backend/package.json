@@ -7,7 +7,8 @@
     "compile": "truffle compile",
     "migrate": "truffle migrate",
     "test": "truffle test",
-    "coverage": "truffle run coverage"
+    "coverage": "truffle run coverage",
+    "prepare": "npm run compile && npm run migrate"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",
@@ -23,7 +24,7 @@
     "typescript": "^4.7.4",
     "yargs": "^17.5.1"
   },
-  "description": "This box comes with everything you need to start using Truffle to write, compile, test, and deploy smart contracts, and interact with them from a React app.",
+  "description": "",
   "main": "truffle-config.js",
   "repository": {
     "type": "git",
@@ -33,6 +34,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brokenseal/bigheads-nft/issues"
-  },
-  "homepage": "https://github.com/brokenseal/bigheads-nft#readme"
+  }
 }
