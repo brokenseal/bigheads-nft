@@ -6,9 +6,9 @@
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "outDir": "dist",
     "noEmit": true,
-    "typeRoots": ["../frontend/src/types", "../node_modules/@types"]
+    "typeRoots": ["bigheads-nft-client", "../node_modules/@types"],
+    "types": ["@types/node", "@types/chai", "@types/mocha"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "build", "cache", "artifacts", "dist"]

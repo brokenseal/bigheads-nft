@@ -1,4 +1,5 @@
-import { Transfer } from '../types/truffle-contracts/BigHeads'
+import { Transfer } from 'bigheads-nft-client'
+import { strict as assert } from "assert";
 
 export const isTransferLog = (log: any): log is Transfer =>
   log.event === 'Transfer'
