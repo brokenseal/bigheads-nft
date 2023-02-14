@@ -4,7 +4,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "prepare": "ts-node --esm ./src/generate-bigheads.ts"
+    "generate": "ts-node --esm ./src/commands.ts generate",
+    "save-to-file": "ts-node --esm ./src/commands.ts save-to-file",
+    "save-to-file-frontend": "ts-node --esm ./src/commands.ts save-to-file-frontend",
+    "upload": "ts-node --esm ./src/commands.ts upload",
+    "generate-and-upload": "npm-run-all generate save-to-file save-to-file-frontend upload"
   },
   "author": "",
   "license": "ISC",

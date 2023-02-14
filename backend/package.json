@@ -7,8 +7,7 @@
     "compile": "truffle compile",
     "migrate": "truffle migrate",
     "test": "truffle test",
-    "coverage": "truffle run coverage",
-    "prepare": "npm run compile && npm run migrate"
+    "coverage": "truffle run coverage"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",

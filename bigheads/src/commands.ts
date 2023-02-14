@@ -39,7 +39,7 @@ yargs(hideBin(process.argv))
   })
   .command(
     'save-to-file-frontend',
-    'Move generate SVGs to frontend workspace',
+    'Move generated SVGs to frontend workspace',
     () => {
       const dirName = getFilePath(import.meta.url)
       saveSvgToFiles(
@@ -68,7 +68,8 @@ yargs(hideBin(process.argv))
         const ipfsPath: AddResult = await uploadFile(client, content)
         const fullPath = `${baseUrl}/ipfs/${ipfsPath.path}`
 
-        return { ipfsPath, fileName, fullPath }
+        const uploadResult: UploadResult = { ipfsPath, fileName, fullPath }
+        return uploadResult
       }),
     ).then((svgFilePaths) => {
       const filePath = getFilePath(import.meta.url)
@@ -80,3 +81,5 @@ yargs(hideBin(process.argv))
     })
   })
   .parse()
+
+type UploadResult = { ipfsPath: AddResult; fileName: string; fullPath: string }

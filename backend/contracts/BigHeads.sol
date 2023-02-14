@@ -10,10 +10,13 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+    string[] private tokenURIs;
 
     mapping(string => uint8) private existingURIs;
 
-    constructor() ERC721("BigHeads", "BIGH") {}
+    constructor(string[] memory _tokenURIs) ERC721("BigHeads", "BIGH") {
+        tokenURIs = _tokenURIs;
+    }
 
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://";
@@ -29,7 +32,10 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
     // The following functions are overrides required by Solidity.
 
     // istanbul ignore next
-    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+    function _burn(uint256 tokenId)
+        internal
+        override(ERC721, ERC721URIStorage)
+    {
         super._burn(tokenId);
     }
 
@@ -42,17 +48,24 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         return super.tokenURI(tokenId);
     }
 
-    function isContentOwned(string memory uri) public view returns(bool) {
+    function isContentOwned(string memory uri) public view returns (bool) {
         return existingURIs[uri] == 1;
     }
 
-    function mint(address recipient, string memory uri) public payable returns (bool, uint256) {
+    function mint(address recipient, string memory uri)
+        public
+        payable
+        returns (bool, uint256)
+    {
         require(!isContentOwned(uri), "NFT already minted!");
-        require(msg.value >= 0.01 ether, "Minimum amount of ether to mint: 0.01");
+        require(
+            msg.value >= 0.01 ether,
+            "Minimum amount of ether to mint: 0.01"
+        );
 
         uint256 newItemId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        existingURIs[uri] = 1; 
+        existingURIs[uri] = 1;
 
         _mint(recipient, newItemId);
         _setTokenURI(newItemId, uri);
@@ -60,7 +73,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         return (true, newItemId);
     }
 
-    function count() public view returns(uint256) {
+    function count() public view returns (uint256) {
         return _tokenIdCounter.current();
     }
 }

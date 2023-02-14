@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bigheads-nft-client": "^0.1.0"
+    "bigheads-nft-client": "^0.1.0",
+    "npm-run-all": "^4.1.5"
   },
-  "devDependencies": {},
   "scripts": {
-    "prepare": "npm run prepare -w backend && npm run prepare -w frontend && npm run prepare -w bigheads",
+    "compile": "npm run compile -w backend",
+    "create-types": "npm run create-types -w frontend",
+    "generate-and-upload": "npm run generate-and-upload -w bigheads",
+    "deploy": "npm run migrate -w backend",
+    "prepare": "npm-run-all compile create-types generate-and-upload deploy",
     "start": "npm run start -w frontend"
   },
   "repository": {

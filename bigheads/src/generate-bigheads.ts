@@ -4,8 +4,8 @@ import * as jsdom from 'jsdom'
 import { join } from 'path'
 import React from 'react'
 import { render } from 'react-dom'
-import { generatedDirPath } from './config.js' // ts-node FTW ... ?
-import { generateNewRandomTraits } from './traits.js' // ts-node FTW ... ?
+import { generatedDirPath } from './config.js'
+import { generateNewRandomTraits } from './traits.js'
 
 type RequiredAvatarProps = Omit<
   Required<AvatarProps>,

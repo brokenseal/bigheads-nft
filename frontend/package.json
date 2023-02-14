@@ -12,8 +12,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "create-types": "typechain ./src/contracts/**/*.json --target=truffle-v5",
-    "clean": "rm -rf ./types/truffle-contracts build ./src/contracts ./src/bigheads/generated",
-    "prepare": "npm run create-types"
+    "clean": "rm -rf ./types/truffle-contracts build ./src/contracts ./src/bigheads/generated"
   },
   "eslintConfig": {
     "extends": [
