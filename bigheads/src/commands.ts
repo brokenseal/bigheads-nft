@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs'
+import { AddResult } from 'ipfs-core-types/dist/src/root.js'
 import { join } from 'path'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
@@ -6,13 +7,13 @@ import { bigHeadsCount, generatedDirPath } from './config.js'
 import {
   createGeneratedFolder,
   generateBigHeadSvgs,
-  prepareDom,
-  saveSvgToFiles,
-  removeGeneratedFolder,
-  saveToFileStatisticsAndTraits,
   GenerateBitHeadsResult,
+  prepareDom,
+  removeGeneratedFolder,
+  saveSvgToFiles,
+  saveToFileStatisticsAndTraits,
 } from './generate-bigheads.js'
-import { createClient, uploadFile } from './ipfs.js'
+import { baseUrl, createClient, uploadFile } from './ipfs.js'
 import { getFilePath } from './utils.js'
 
 yargs(hideBin(process.argv))
@@ -36,7 +37,25 @@ yargs(hideBin(process.argv))
   .command('save-to-file', 'Save generated SVGs to file system', () => {
     saveSvgToFiles()
   })
-  .command('upload', 'Upload generated bigheads to IPFS', (argv) => {
+  .command(
+    'save-to-file-frontend',
+    'Move generate SVGs to frontend workspace',
+    () => {
+      const dirName = getFilePath(import.meta.url)
+      saveSvgToFiles(
+        join(
+          dirName,
+          '..',
+          '..',
+          'frontend',
+          'public',
+          'bigheads',
+          'generated',
+        ),
+      )
+    },
+  )
+  .command('upload', 'Upload generated bigheads to IPFS', () => {
     const svgFileNameContentListPath = join(generatedDirPath, `svgs.json`)
     const svgFile = readFileSync(svgFileNameContentListPath)
     const svgFileNameContentList: GenerateBitHeadsResult['svgFileNameContentList'] = JSON.parse(
@@ -46,9 +65,10 @@ yargs(hideBin(process.argv))
 
     Promise.all(
       svgFileNameContentList.map(async ({ content, fileName, path }) => {
-        const ipfsPath = await uploadFile(client, content)
+        const ipfsPath: AddResult = await uploadFile(client, content)
+        const fullPath = `${baseUrl}/ipfs/${ipfsPath.path}`
 
-        return { ipfsPath, fileName }
+        return { ipfsPath, fileName, fullPath }
       }),
     ).then((svgFilePaths) => {
       const filePath = getFilePath(import.meta.url)

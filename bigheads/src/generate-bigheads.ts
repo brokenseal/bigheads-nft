@@ -4,7 +4,7 @@ import * as jsdom from 'jsdom'
 import { join } from 'path'
 import React from 'react'
 import { render } from 'react-dom'
-import { bigHeadsCount, generatedDirPath } from './config.js' // ts-node FTW ... ?
+import { generatedDirPath } from './config.js' // ts-node FTW ... ?
 import { generateNewRandomTraits } from './traits.js' // ts-node FTW ... ?
 
 type RequiredAvatarProps = Omit<
@@ -242,7 +242,7 @@ export const generateBigHeadSvgs = (
   const svgFileNameContentList = traits.map((bigHeadTraits, index) => {
     const bigHead = React.createElement(BigHead, bigHeadTraits)
     render(bigHead, container)
-    const fileName = `bighead_${index}.svg`
+    const fileName: string = `bighead_${index}.svg`
     const path = join(generatedDirPath, 'files', fileName)
     traitsPerGeneratedFile[fileName] = bigHeadTraits
 
@@ -306,14 +306,19 @@ export const saveToFileStatisticsAndTraits = ({
   return { traitsFilePath, statisticsFilePath }
 }
 
-export const saveSvgToFiles = () => {
+export const saveSvgToFiles = (
+  destinationFolder: string | undefined = undefined,
+) => {
   const svgFileNameContentListPath = join(generatedDirPath, `svgs.json`)
   const svgFile = readFileSync(svgFileNameContentListPath)
   const svgFileNameContentList: GenerateBitHeadsResult['svgFileNameContentList'] = JSON.parse(
     svgFile.toString(),
   )
 
-  svgFileNameContentList.forEach(({ path, content }) => {
-    writeFileSync(path, content, { flag: 'w' })
+  svgFileNameContentList.forEach(({ path, content, fileName }) => {
+    const fullPath =
+      destinationFolder === undefined ? path : join(destinationFolder, fileName)
+
+    writeFileSync(fullPath, content, { flag: 'w' })
   })
 }

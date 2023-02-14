@@ -8,6 +8,8 @@ const projectSecret = process.env.INFURA_API_KEY_SECRET
 const auth =
   'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
 
+export const baseUrl = process.env.INFURA_DEDICATED_GATEWAY_SUBDOMAIN
+
 export const createClient = () =>
   create({
     host: 'ipfs.infura.io',
@@ -21,4 +23,3 @@ export const createClient = () =>
 
 export const uploadFile = (client: IPFSHTTPClient, fileContent: string) =>
   client.add(fileContent)
-// const url = `https://yourdedicatedgwname.infura-ipfs.io/ipfs/${added.path}`

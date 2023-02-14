@@ -1,9 +1,8 @@
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import { join } from 'path'
+import { getFilePath } from './utils.js'
 
-const fileName = fileURLToPath(import.meta.url)
-const dirName = dirname(fileName)
+const dirName = getFilePath(import.meta.url)
 
-export const rootDir = join(dirName, '../../frontend')
+// export const rootDir = join(dirName, '../../frontend')
 export const generatedDirPath = join(dirName, 'generated')
 export const bigHeadsCount = 10
