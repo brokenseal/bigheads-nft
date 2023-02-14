@@ -4,9 +4,11 @@ types/truffle-contracts
 coverage
 coverage.json
 dist
-frontend/public/bigheads/generated
 build
 .DS_Store
 frontend/src/contracts
 frontend/types/truffle-contracts
 .vscode
+bigheads/src/generated
+frontend/public/bigheads/generated
+.env

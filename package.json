@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "prepare": "npm run prepare --workspaces",
+    "prepare": "npm run prepare -w backend && npm run prepare -w frontend && npm run prepare -w bigheads",
     "start": "npm run start -w frontend"
   },
   "repository": {
@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/brokenseal/bigheads-nft#readme",
   "workspaces": [
-    "frontend",
     "backend",
-    "bigheads"
+    "bigheads",
+    "frontend"
   ]
 }

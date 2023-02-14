@@ -5,5 +5,5 @@ const fileName = fileURLToPath(import.meta.url)
 const dirName = dirname(fileName)
 
 export const rootDir = join(dirName, '../../frontend')
-export const generatedDirPath = join(rootDir, 'public', 'bigheads', 'generated')
-export const bigHeadsCount = 1000
+export const generatedDirPath = join(dirName, 'generated')
+export const bigHeadsCount = 10

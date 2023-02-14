@@ -1,5 +1,5 @@
 import { AvatarProps, BigHead } from '@bigheads/core'
-import { mkdirSync, rmSync, writeFileSync } from 'fs'
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
 import * as jsdom from 'jsdom'
 import { join } from 'path'
 import React from 'react'
@@ -211,24 +211,26 @@ export const generateUniqueTraits = () => {
 const generateRandomUniqueTraits = (bigHeadsCount: number) =>
   new Array(bigHeadsCount).fill(null).map(() => generateUniqueTraits())
 
-const prepareDomAndFolders = () => {
+export const prepareDom = () => {
   const dom = new jsdom.JSDOM("<html><body><div id='root'></div></body></html>")
   ;(global as any).window = dom.window
+  const container = dom.window.document.getElementById('root')!
 
-  // const fileName = fileURLToPath(import.meta.url)
-  // const dirName = dirname(fileName)
-  // const rootDir = join(dirName, '../../')
-
-  // const generatedDirPath = join(rootDir, 'public', 'bigheads', 'generated')
-  // const generatedDirPath = join(rootDir, 'src', 'bigheads', 'generated')
-
-  rmSync(generatedDirPath, { recursive: true, force: true })
-  mkdirSync(generatedDirPath)
-
-  return { dom, generatedDirPath }
+  return { dom, container }
 }
 
-const generateBigHeadSvgs = (
+export const removeGeneratedFolder = () => {
+  rmSync(generatedDirPath, { recursive: true, force: true })
+  mkdirSync(generatedDirPath)
+}
+
+export const createGeneratedFolder = () => {
+  rmSync(generatedDirPath, { recursive: true, force: true })
+  mkdirSync(generatedDirPath)
+  mkdirSync(join(generatedDirPath, 'files'))
+}
+
+export const generateBigHeadSvgs = (
   container: HTMLElement,
   generatedDirPath: string,
   bigHeadsCount: number,
@@ -241,7 +243,7 @@ const generateBigHeadSvgs = (
     const bigHead = React.createElement(BigHead, bigHeadTraits)
     render(bigHead, container)
     const fileName = `bighead_${index}.svg`
-    const path = join(generatedDirPath, fileName)
+    const path = join(generatedDirPath, 'files', fileName)
     traitsPerGeneratedFile[fileName] = bigHeadTraits
 
     type Key = keyof AvatarProps
@@ -266,7 +268,7 @@ const generateBigHeadSvgs = (
       }
     })
 
-    return { path, content: container!.innerHTML }
+    return { path, fileName, content: container!.innerHTML }
   })
 
   return {
@@ -276,31 +278,42 @@ const generateBigHeadSvgs = (
   }
 }
 
-const main = () => {
-  const { dom, generatedDirPath } = prepareDomAndFolders()
-  const {
-    traitsPerGeneratedFile,
-    generatedTraitsStatistics,
-    svgFileNameContentList,
-  } = generateBigHeadSvgs(
-    dom.window.document.getElementById('root')!,
-    generatedDirPath,
-    bigHeadsCount,
+export type GenerateBitHeadsResult = ReturnType<typeof generateBigHeadSvgs>
+
+export const saveToFileStatisticsAndTraits = ({
+  generatedTraitsStatistics,
+  traitsPerGeneratedFile,
+  svgFileNameContentList,
+}: GenerateBitHeadsResult) => {
+  const svgFileNameContentListPath = join(generatedDirPath, `svgs.json`)
+  writeFileSync(
+    svgFileNameContentListPath,
+    JSON.stringify(svgFileNameContentList, undefined, 2),
+  )
+
+  const traitsFilePath = join(generatedDirPath, `traits.json`)
+  writeFileSync(
+    traitsFilePath,
+    JSON.stringify(traitsPerGeneratedFile, undefined, 2),
+  )
+
+  const statisticsFilePath = join(generatedDirPath, `statistics.json`)
+  writeFileSync(
+    statisticsFilePath,
+    JSON.stringify(generatedTraitsStatistics, undefined, 2),
+  )
+
+  return { traitsFilePath, statisticsFilePath }
+}
+
+export const saveSvgToFiles = () => {
+  const svgFileNameContentListPath = join(generatedDirPath, `svgs.json`)
+  const svgFile = readFileSync(svgFileNameContentListPath)
+  const svgFileNameContentList: GenerateBitHeadsResult['svgFileNameContentList'] = JSON.parse(
+    svgFile.toString(),
   )
 
   svgFileNameContentList.forEach(({ path, content }) => {
     writeFileSync(path, content, { flag: 'w' })
   })
-  const traitsFilePath = join(generatedDirPath, `_traits.json`)
-  writeFileSync(
-    traitsFilePath,
-    JSON.stringify(traitsPerGeneratedFile, undefined, 2),
-  )
-  const statisticsFilePath = join(generatedDirPath, `_statistics.json`)
-  writeFileSync(
-    statisticsFilePath,
-    JSON.stringify(generatedTraitsStatistics, undefined, 2),
-  )
 }
-
-main()
