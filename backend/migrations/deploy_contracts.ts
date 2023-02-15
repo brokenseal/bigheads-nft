@@ -17,7 +17,7 @@ module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
         __dirname,
         '..',
         '..',
-        'bigheads',
+        'bigheads-management',
         'src',
         'generated',
         'uploaded.json',

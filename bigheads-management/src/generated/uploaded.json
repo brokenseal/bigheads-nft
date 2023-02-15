@@ -1,0 +1,57 @@
+[
+  {
+    "ipfsPath": {
+      "path": "QmSzHxxr3f1TMXvb2NeG2hm9AW8grMtN25riVdmDbTJfZw",
+      "cid": {
+        "/": "QmSzHxxr3f1TMXvb2NeG2hm9AW8grMtN25riVdmDbTJfZw"
+      },
+      "size": 21809
+    },
+    "fileName": "bighead_0.svg",
+    "fullPath": "https://bigheads-nft.infura-ipfs.io/ipfs/QmSzHxxr3f1TMXvb2NeG2hm9AW8grMtN25riVdmDbTJfZw"
+  },
+  {
+    "ipfsPath": {
+      "path": "QmfGBvoUqhFFjiEh274hbKEPUgtmeV2fje4hfkeuS2WtyQ",
+      "cid": {
+        "/": "QmfGBvoUqhFFjiEh274hbKEPUgtmeV2fje4hfkeuS2WtyQ"
+      },
+      "size": 19557
+    },
+    "fileName": "bighead_1.svg",
+    "fullPath": "https://bigheads-nft.infura-ipfs.io/ipfs/QmfGBvoUqhFFjiEh274hbKEPUgtmeV2fje4hfkeuS2WtyQ"
+  },
+  {
+    "ipfsPath": {
+      "path": "QmdQXbDuF8n6iuyuWUh426yUtmqLQqS9zcByfvUjUD8KoU",
+      "cid": {
+        "/": "QmdQXbDuF8n6iuyuWUh426yUtmqLQqS9zcByfvUjUD8KoU"
+      },
+      "size": 23418
+    },
+    "fileName": "bighead_2.svg",
+    "fullPath": "https://bigheads-nft.infura-ipfs.io/ipfs/QmdQXbDuF8n6iuyuWUh426yUtmqLQqS9zcByfvUjUD8KoU"
+  },
+  {
+    "ipfsPath": {
+      "path": "QmeaiNAsrTvSaAb86bPn2xoiqghh3mdcResrbUsYeW7xUw",
+      "cid": {
+        "/": "QmeaiNAsrTvSaAb86bPn2xoiqghh3mdcResrbUsYeW7xUw"
+      },
+      "size": 19981
+    },
+    "fileName": "bighead_3.svg",
+    "fullPath": "https://bigheads-nft.infura-ipfs.io/ipfs/QmeaiNAsrTvSaAb86bPn2xoiqghh3mdcResrbUsYeW7xUw"
+  },
+  {
+    "ipfsPath": {
+      "path": "QmcTQVWX2hmFq2vLWg6trsr4eYpCZZDDUYFgu42SyawCDU",
+      "cid": {
+        "/": "QmcTQVWX2hmFq2vLWg6trsr4eYpCZZDDUYFgu42SyawCDU"
+      },
+      "size": 17418
+    },
+    "fileName": "bighead_4.svg",
+    "fullPath": "https://bigheads-nft.infura-ipfs.io/ipfs/QmcTQVWX2hmFq2vLWg6trsr4eYpCZZDDUYFgu42SyawCDU"
+  }
+]

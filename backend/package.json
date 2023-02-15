@@ -1,5 +1,5 @@
 {
-  "name": "bigheads-nft-backend",
+  "name": "@bigheads-nft/backend",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -1,0 +1,587 @@
+{
+  "accessory": {
+    "none": {
+      "count": 3,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "roundGlasses": {
+      "count": 1,
+      "fileNames": [
+        "bighead_3.svg"
+      ]
+    },
+    "shades": {
+      "count": 1,
+      "fileNames": [
+        "bighead_2.svg"
+      ]
+    },
+    "tinyGlasses": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "body": {
+    "breasts": {
+      "count": 2,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_2.svg"
+      ]
+    },
+    "chest": {
+      "count": 3,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    }
+  },
+  "circleColor": {
+    "blue": {
+      "count": 5,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    }
+  },
+  "clothing": {
+    "dress": {
+      "count": 1,
+      "fileNames": [
+        "bighead_0.svg"
+      ]
+    },
+    "dressShirt": {
+      "count": 1,
+      "fileNames": [
+        "bighead_1.svg"
+      ]
+    },
+    "naked": {
+      "count": 0,
+      "fileNames": []
+    },
+    "shirt": {
+      "count": 2,
+      "fileNames": [
+        "bighead_2.svg",
+        "bighead_3.svg"
+      ]
+    },
+    "tankTop": {
+      "count": 0,
+      "fileNames": []
+    },
+    "vneck": {
+      "count": 1,
+      "fileNames": [
+        "bighead_4.svg"
+      ]
+    }
+  },
+  "clothingColor": {
+    "black": {
+      "count": 0,
+      "fileNames": []
+    },
+    "blue": {
+      "count": 5,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "green": {
+      "count": 0,
+      "fileNames": []
+    },
+    "red": {
+      "count": 0,
+      "fileNames": []
+    },
+    "white": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "eyebrows": {
+    "angry": {
+      "count": 0,
+      "fileNames": []
+    },
+    "concerned": {
+      "count": 0,
+      "fileNames": []
+    },
+    "leftLowered": {
+      "count": 0,
+      "fileNames": []
+    },
+    "raised": {
+      "count": 4,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "serious": {
+      "count": 1,
+      "fileNames": [
+        "bighead_0.svg"
+      ]
+    }
+  },
+  "eyes": {
+    "content": {
+      "count": 0,
+      "fileNames": []
+    },
+    "dizzy": {
+      "count": 0,
+      "fileNames": []
+    },
+    "happy": {
+      "count": 1,
+      "fileNames": [
+        "bighead_1.svg"
+      ]
+    },
+    "heart": {
+      "count": 0,
+      "fileNames": []
+    },
+    "leftTwitch": {
+      "count": 0,
+      "fileNames": []
+    },
+    "normal": {
+      "count": 4,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "simple": {
+      "count": 0,
+      "fileNames": []
+    },
+    "squint": {
+      "count": 0,
+      "fileNames": []
+    },
+    "wink": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "faceMask": {
+    "yes": {
+      "count": 0,
+      "fileNames": []
+    },
+    "no": {
+      "count": 5,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    }
+  },
+  "faceMaskColor": {
+    "black": {
+      "count": 0,
+      "fileNames": []
+    },
+    "blue": {
+      "count": 4,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "green": {
+      "count": 1,
+      "fileNames": [
+        "bighead_1.svg"
+      ]
+    },
+    "red": {
+      "count": 0,
+      "fileNames": []
+    },
+    "white": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "facialHair": {
+    "mediumBeard": {
+      "count": 0,
+      "fileNames": []
+    },
+    "none": {
+      "count": 1,
+      "fileNames": [
+        "bighead_0.svg"
+      ]
+    },
+    "none2": {
+      "count": 2,
+      "fileNames": [
+        "bighead_2.svg",
+        "bighead_3.svg"
+      ]
+    },
+    "none3": {
+      "count": 2,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "stubble": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "graphic": {
+    "gatsby": {
+      "count": 0,
+      "fileNames": []
+    },
+    "graphQL": {
+      "count": 0,
+      "fileNames": []
+    },
+    "none": {
+      "count": 4,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "react": {
+      "count": 1,
+      "fileNames": [
+        "bighead_0.svg"
+      ]
+    },
+    "redwood": {
+      "count": 0,
+      "fileNames": []
+    },
+    "vue": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "hair": {
+    "afro": {
+      "count": 1,
+      "fileNames": [
+        "bighead_0.svg"
+      ]
+    },
+    "balding": {
+      "count": 0,
+      "fileNames": []
+    },
+    "bob": {
+      "count": 0,
+      "fileNames": []
+    },
+    "bun": {
+      "count": 0,
+      "fileNames": []
+    },
+    "buzz": {
+      "count": 0,
+      "fileNames": []
+    },
+    "long": {
+      "count": 1,
+      "fileNames": [
+        "bighead_2.svg"
+      ]
+    },
+    "none": {
+      "count": 0,
+      "fileNames": []
+    },
+    "pixie": {
+      "count": 0,
+      "fileNames": []
+    },
+    "short": {
+      "count": 3,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    }
+  },
+  "hairColor": {
+    "black": {
+      "count": 2,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_2.svg"
+      ]
+    },
+    "blonde": {
+      "count": 0,
+      "fileNames": []
+    },
+    "blue": {
+      "count": 0,
+      "fileNames": []
+    },
+    "brown": {
+      "count": 1,
+      "fileNames": [
+        "bighead_4.svg"
+      ]
+    },
+    "orange": {
+      "count": 2,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_3.svg"
+      ]
+    },
+    "pink": {
+      "count": 0,
+      "fileNames": []
+    },
+    "white": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "hat": {
+    "beanie": {
+      "count": 0,
+      "fileNames": []
+    },
+    "none": {
+      "count": 1,
+      "fileNames": [
+        "bighead_4.svg"
+      ]
+    },
+    "none2": {
+      "count": 2,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_3.svg"
+      ]
+    },
+    "none3": {
+      "count": 0,
+      "fileNames": []
+    },
+    "none4": {
+      "count": 2,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_2.svg"
+      ]
+    },
+    "none5": {
+      "count": 0,
+      "fileNames": []
+    },
+    "turban": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "hatColor": {
+    "black": {
+      "count": 1,
+      "fileNames": [
+        "bighead_2.svg"
+      ]
+    },
+    "blue": {
+      "count": 3,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "green": {
+      "count": 1,
+      "fileNames": [
+        "bighead_3.svg"
+      ]
+    },
+    "red": {
+      "count": 0,
+      "fileNames": []
+    },
+    "white": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "lashes": {
+    "yes": {
+      "count": 0,
+      "fileNames": []
+    },
+    "no": {
+      "count": 5,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    }
+  },
+  "lipColor": {
+    "green": {
+      "count": 0,
+      "fileNames": []
+    },
+    "pink": {
+      "count": 0,
+      "fileNames": []
+    },
+    "purple": {
+      "count": 2,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "red": {
+      "count": 3,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg"
+      ]
+    },
+    "turqoise": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "mask": {
+    "yes": {
+      "count": 5,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg",
+        "bighead_2.svg",
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "no": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "mouth": {
+    "grin": {
+      "count": 0,
+      "fileNames": []
+    },
+    "lips": {
+      "count": 0,
+      "fileNames": []
+    },
+    "open": {
+      "count": 0,
+      "fileNames": []
+    },
+    "openSmile": {
+      "count": 1,
+      "fileNames": [
+        "bighead_2.svg"
+      ]
+    },
+    "sad": {
+      "count": 2,
+      "fileNames": [
+        "bighead_0.svg",
+        "bighead_1.svg"
+      ]
+    },
+    "serious": {
+      "count": 2,
+      "fileNames": [
+        "bighead_3.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "tongue": {
+      "count": 0,
+      "fileNames": []
+    }
+  },
+  "skinTone": {
+    "black": {
+      "count": 0,
+      "fileNames": []
+    },
+    "brown": {
+      "count": 1,
+      "fileNames": [
+        "bighead_0.svg"
+      ]
+    },
+    "dark": {
+      "count": 0,
+      "fileNames": []
+    },
+    "light": {
+      "count": 2,
+      "fileNames": [
+        "bighead_2.svg",
+        "bighead_4.svg"
+      ]
+    },
+    "red": {
+      "count": 0,
+      "fileNames": []
+    },
+    "yellow": {
+      "count": 2,
+      "fileNames": [
+        "bighead_1.svg",
+        "bighead_3.svg"
+      ]
+    }
+  }
+}
