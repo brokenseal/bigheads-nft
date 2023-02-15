@@ -9,6 +9,6 @@ build
 frontend/src/contracts
 frontend/types/truffle-contracts
 .vscode
-bigheads-nft/src/generated
+bigheads-management/src/generated
 frontend/public/bigheads/generated
 .env
