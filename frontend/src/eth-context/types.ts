@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import { Contract } from 'web3-eth-contract'
-import { BigHeadsInstance } from '../../types/truffle-contracts'
-import BigHeadsArtifact from '../contracts/BigHeads.json'
+import { BigHeadsInstance } from '@bigheads-nft/backend'
+import BigHeadsArtifact from "@bigheads-nft/backend/build/contracts/BigHeads.json";
 
 export type BigHeadsContract = Omit<Contract, 'methods'> & {
   methods: BigHeadsInstance

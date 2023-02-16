@@ -6,7 +6,6 @@ coverage.json
 dist
 build
 .DS_Store
-frontend/src/contracts
 .vscode
 bigheads-management/src/generated
 frontend/public/bigheads/generated

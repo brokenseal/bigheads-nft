@@ -9,7 +9,7 @@
   },
   "scripts": {
     "compile": "npm run compile -w backend",
-    "create-types": "npm run create-types -w frontend",
+    "create-types": "npm run create-types -w backend",
     "generate-and-upload": "npm run generate-and-upload -w bigheads-management",
     "deploy": "npm run migrate -w backend",
     "prepare": "npm-run-all compile create-types generate-and-upload deploy",

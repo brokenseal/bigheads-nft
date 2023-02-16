@@ -1,7 +1,7 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from "react";
 import Web3 from "web3";
 import { Contract } from "web3-eth-contract";
-import BigHeadsArtifact from "../contracts/BigHeads.json";
+import BigHeadsArtifact from "@bigheads-nft/backend/build/contracts/BigHeads.json";
 import { EthContext } from "./EthContext";
 import { EthContextState } from "./types";
 
