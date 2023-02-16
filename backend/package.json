@@ -2,12 +2,14 @@
   "name": "@bigheads-nft/backend",
   "version": "0.1.0",
   "private": true,
+  "types": "./types.ts",
   "scripts": {
     "watch": "truffle watch",
     "compile": "truffle compile",
     "migrate": "truffle migrate",
     "test": "truffle test",
-    "coverage": "truffle run coverage"
+    "coverage": "truffle run coverage",
+    "create-types": "typechain ./build/contracts/**/*.json --target=truffle-v5"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",

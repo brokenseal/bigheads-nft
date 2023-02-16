@@ -50,7 +50,7 @@ export function NFTImage({ tokenId, onMinted }: NFTImageProps) {
         tokenId: string;
       }
     ).tokenId;
-    console.log(minedTokenId, transactionReceipt);
+
     getMintedStatus();
 
     if (transactionReceipt && minedTokenId) {
