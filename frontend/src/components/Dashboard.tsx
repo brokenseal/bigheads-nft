@@ -1,18 +1,15 @@
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { useMemo } from "react";
 import { useEth } from "../eth-context";
+import { MintCard } from "./MintCard";
 import { NFTImage } from "./NFTImage";
 import { useHome } from "./useHome";
 import { formatWeiValue } from "./utils";
 
 export function Dashboard() {
   const ethContextState = useEth();
-  const {
-    bigHeadsCount,
-    currentBalance,
-    handleUpdateBalance,
-    handleMintedNftUpdate,
-  } = useHome();
+  const { minted, currentBalance, handleUpdateBalance, handleMintedNftUpdate } =
+    useHome();
   const formattedBalance = useMemo(() => {
     if (currentBalance === undefined || !ethContextState?.eth?.web3) {
       return "Loading...";
@@ -40,7 +37,7 @@ export function Dashboard() {
           </button>
         </p>
         <p className="flex flex-row">
-          BigHeads count: {bigHeadsCount}
+          BigHeads count: {minted.length}
           <button
             onClick={handleMintedNftUpdate}
             title="Refresh"
@@ -52,11 +49,11 @@ export function Dashboard() {
       </div>
       <div className="rounded-lg border-4 border-solid border-gray-200 p-4">
         <div className="grid grid-cols-4">
-          {new Array(bigHeadsCount + 1).fill(null).map((_, i) => {
-            return (
-              <NFTImage key={i} tokenId={i} onMinted={handleMintedNftUpdate} />
-            );
-          })}
+          {minted.map((uri, index) => (
+            // FIXME: index used as tokenId is not correct
+            <NFTImage key={index} uri={uri} tokenId={index} />
+          ))}
+          <MintCard onMint={handleMintedNftUpdate} />
         </div>
       </div>
     </>

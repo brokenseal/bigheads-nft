@@ -59,7 +59,9 @@ export function EthProvider({ children }: EthProviderProps) {
     events.forEach((e) => (window as any).ethereum?.on(e, handleChange));
 
     return () => {
-      events.forEach((e) => (window as any).ethereum?.removeListener(e, handleChange));
+      events.forEach((e) =>
+        (window as any).ethereum?.removeListener(e, handleChange)
+      );
     };
   }, [handleChange]);
 

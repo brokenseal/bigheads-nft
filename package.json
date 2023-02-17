@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bigheads-nft-client": "^0.1.0",
+    "clsx": "^1.2.1",
     "npm-run-all": "^4.1.5"
   },
   "scripts": {
@@ -13,6 +14,7 @@
     "generate-and-upload": "npm run generate-and-upload -w bigheads-management",
     "deploy": "npm run migrate -w backend",
     "prepare": "npm-run-all compile create-types generate-and-upload deploy",
+    "test:backend": "npm run test -w backend",
     "start": "npm run start -w frontend"
   },
   "repository": {

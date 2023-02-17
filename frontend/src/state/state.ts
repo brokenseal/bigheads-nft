@@ -4,8 +4,8 @@ export type BaseAction<T, P> = {
 }
 export type UpdateBalanceAction = BaseAction<'update-balance', string>
 export type UpdateBigHeadsCountAction = BaseAction<
-  'update-big-heads-count',
-  number
+  'update-minted-nfts',
+  string[]
 >
 export type ErrorAction = BaseAction<'error', Error>
 export type Action =
@@ -16,10 +16,10 @@ export type Action =
 export type AppState = {
   currentBalance?: string
   errors: Error[]
-  bigHeadsCount: number
+  minted: string[]
 }
 
-const initialState: AppState = { errors: [], bigHeadsCount: 0 }
+const initialState: AppState = { errors: [], minted: [] }
 
 const reducer = (state: AppState, action: Action): AppState => {
   const { type, payload } = action
@@ -29,8 +29,8 @@ const reducer = (state: AppState, action: Action): AppState => {
       return { ...state, errors: [...state.errors, payload] }
     case 'update-balance':
       return { ...state, currentBalance: payload }
-    case 'update-big-heads-count':
-      return { ...state, bigHeadsCount: payload }
+    case 'update-minted-nfts':
+      return { ...state, minted: payload }
     default:
       throw new Error(`Unhandled or undefined reducer action type ${type}`)
   }

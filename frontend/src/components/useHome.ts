@@ -7,18 +7,19 @@ export function useHome() {
   const ethContextState = useEth()
 
   const handleMintedNftUpdate = useCallback(async () => {
-    const count = await ethContextState?.eth?.contract?.methods
-      .count()
-      .call({ from: ethContextState?.eth?.accounts[0] })
+    const contract = ethContextState?.eth?.contract
 
-    const countAsNumber = Number(count)
-    if (isNaN(countAsNumber)) {
+    if (!contract) {
       return
     }
 
+    const minted: string[] = await contract.methods
+      .getMinted()
+      .call({ from: ethContextState?.eth?.accounts[0] })
+
     dispatch({
-      type: 'update-big-heads-count',
-      payload: countAsNumber,
+      type: 'update-minted-nfts',
+      payload: minted,
     })
   }, [ethContextState?.eth?.contract, ethContextState?.eth?.accounts, dispatch])
 

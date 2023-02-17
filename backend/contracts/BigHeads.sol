@@ -6,27 +6,30 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract BigHeads is ERC721, ERC721URIStorage, Ownable {
+import "./Utils.sol";
+
+contract BigHeads is ERC721, ERC721URIStorage, Ownable, Utils {
     using Counters for Counters.Counter;
 
-    Counters.Counter private _tokenIdCounter;
-    string[] private tokenURIs;
+    Counters.Counter private tokenIdCounter;
 
-    mapping(string => uint8) private existingURIs;
+    string[] private minted;
+    string[] private availableTokenURIs;
 
-    constructor(string[] memory _tokenURIs) ERC721("BigHeads", "BIGH") {
-        tokenURIs = _tokenURIs;
+    constructor(string[] memory tokenURIs) ERC721("BigHeads", "BIGH") {
+        availableTokenURIs = tokenURIs;
     }
 
-    function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://";
-    }
+    // function _baseURI() internal pure override returns (string memory) {
+    //     return "ipfs://";
+    // }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
-        _tokenIdCounter.increment();
-        _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+    function safeMint(address recipient)
+        public
+        onlyOwner
+        returns (uint256, string memory)
+    {
+        return _mint(recipient);
     }
 
     // The following functions are overrides required by Solidity.
@@ -48,32 +51,38 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         return super.tokenURI(tokenId);
     }
 
-    function isContentOwned(string memory uri) public view returns (bool) {
-        return existingURIs[uri] == 1;
-    }
-
-    function mint(address recipient, string memory uri)
+    function mint(address recipient)
         public
         payable
-        returns (bool, uint256)
+        returns (uint256, string memory)
     {
-        require(!isContentOwned(uri), "NFT already minted!");
         require(
             msg.value >= 0.01 ether,
             "Minimum amount of ether to mint: 0.01"
         );
 
-        uint256 newItemId = _tokenIdCounter.current();
-        _tokenIdCounter.increment();
-        existingURIs[uri] = 1;
+        return _mint(recipient);
+    }
+
+    function _mint(address recipient) private returns (uint256, string memory) {
+        uint256 newItemId = tokenIdCounter.current();
+        tokenIdCounter.increment();
+
+        (
+            string memory uri,
+            string[] memory newAvailableTokens
+        ) = getRandomItemFromArray(availableTokenURIs);
+
+        availableTokenURIs = newAvailableTokens;
+        minted.push(uri);
 
         _mint(recipient, newItemId);
         _setTokenURI(newItemId, uri);
 
-        return (true, newItemId);
+        return (newItemId, uri);
     }
 
-    function count() public view returns (uint256) {
-        return _tokenIdCounter.current();
+    function getMinted() public view returns (string[] memory) {
+        return minted;
     }
 }

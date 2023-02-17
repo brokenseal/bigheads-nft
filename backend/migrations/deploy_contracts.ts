@@ -24,7 +24,11 @@ module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
       ),
     )
     const uploaded: UploadResult[] = JSON.parse(uploadedFile.toString())
-    const existingURIs = uploaded.map((data) => data.fullPath)
+    const existingURIs = uploaded.map((data) => {
+      return data.fullPath
+    })
+
+    console.log('existingURIs', existingURIs)
 
     await deployer.deploy(BigHeads, existingURIs)
 

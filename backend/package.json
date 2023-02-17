@@ -9,7 +9,8 @@
     "migrate": "truffle migrate",
     "test": "truffle test",
     "coverage": "truffle run coverage",
-    "create-types": "typechain ./build/contracts/**/*.json --target=truffle-v5"
+    "create-types": "typechain ./build/contracts/**/*.json --target=truffle-v5",
+    "prepare": "npm-run-all compile create-types"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",
