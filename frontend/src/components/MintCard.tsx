@@ -46,7 +46,7 @@ export function MintCard({ onMint }: MintCardProps) {
           <BeakerIcon className="w-36 h-36 text-blue-500" />
         </button>
       </CardBody>
-      <CardFooter>Mint one!</CardFooter>
+      <CardFooter invisible>Mint one!</CardFooter>
     </Card>
   );
 }

@@ -30,11 +30,11 @@ export function NFTImage({ uri, tokenId }: NFTImageProps) {
 
   return (
     <Card>
+      <CardFooter>BigHead #{tokenId}</CardFooter>
       <CardBody>
         <img src={uri} title={title} alt={title} className="max-width" />
       </CardBody>
-      <CardFooter>BigHead #{tokenId}</CardFooter>
-      {isOwner && <CardFooter invisible={false}>You own this one!</CardFooter>}
+      {isOwner && <CardFooter invisible>You own this one!</CardFooter>}
     </Card>
   );
 }

@@ -68,8 +68,13 @@ module.exports = {
       host: '127.0.0.1', // Localhost (default: none)
       port: 8545, // Standard Ethereum port (default: none)
       network_id: '*', // Any network (default: none)
-      gas: 4612388,
+      gas: 6_721_975,
+      // gas: 3_500_000
     },
+  },
+  solidityLog: {
+    displayPrefix: '[contract]', // defaults to ""
+    preventConsoleLogMigration: true, // defaults to false
   },
   //
   // An additional network, but with some advanced options…

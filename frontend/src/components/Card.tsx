@@ -1,18 +1,11 @@
 import { PropsWithChildren } from "react";
 import clsx from "clsx";
 
-export function Card({
-  children,
-  highlighted = false,
-}: PropsWithChildren<{ highlighted?: boolean }>) {
+export function Card({ children }: PropsWithChildren<{}>) {
   return (
     <div
       className={clsx(
-        "flex flex-col group rounded-lg border-2 border-gray-100 m-4 min-h-[200px]",
-        {
-          "border-gray-200": highlighted,
-          "border-gray-100": !highlighted,
-        }
+        "flex flex-col group rounded-lg border-2 border-gray-100 m-4 min-h-[200px]"
       )}
     >
       {children}
@@ -26,7 +19,7 @@ export function CardBody({ children }: PropsWithChildren<{}>) {
 
 export function CardFooter({
   children,
-  invisible = true,
+  invisible = false,
 }: PropsWithChildren<{ invisible?: boolean }>) {
   return (
     <div

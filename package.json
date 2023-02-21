@@ -31,5 +31,8 @@
     "backend",
     "bigheads-management",
     "frontend"
-  ]
+  ],
+  "devDependencies": {
+    "chai": "^4.3.7"
+  }
 }

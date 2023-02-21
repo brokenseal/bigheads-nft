@@ -11,7 +11,12 @@ module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
     network: Network,
     _accounts: string[],
   ) => {
+    const Utils = artifacts.require('Utils')
     const BigHeads = artifacts.require('BigHeads')
+
+    await deployer.deploy(Utils)
+    await deployer.link(Utils, BigHeads)
+
     const uploadedFile = readFileSync(
       join(
         __dirname,
@@ -27,8 +32,6 @@ module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
     const existingURIs = uploaded.map((data) => {
       return data.fullPath
     })
-
-    console.log('existingURIs', existingURIs)
 
     await deployer.deploy(BigHeads, existingURIs)
 

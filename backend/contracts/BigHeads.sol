@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "./Utils.sol";
 
-contract BigHeads is ERC721, ERC721URIStorage, Ownable, Utils {
+contract BigHeads is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private tokenIdCounter;
@@ -65,13 +65,13 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable, Utils {
     }
 
     function _mint(address recipient) private returns (uint256, string memory) {
+        require(availableTokenURIs.length != 0, "All NFTs have been minted!");
+
         uint256 newItemId = tokenIdCounter.current();
         tokenIdCounter.increment();
 
-        (
-            string memory uri,
-            string[] memory newAvailableTokens
-        ) = getRandomItemFromArray(availableTokenURIs);
+        (string memory uri, string[] memory newAvailableTokens) = Utils
+            .getRandomItemFromArray(availableTokenURIs);
 
         availableTokenURIs = newAvailableTokens;
         minted.push(uri);
