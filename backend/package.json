@@ -10,7 +10,8 @@
     "test": "truffle test",
     "coverage": "truffle run coverage",
     "create-types": "typechain ./build/contracts/**/*.json --target=truffle-v5",
-    "prepare": "npm-run-all compile create-types"
+    "prepare": "npm-run-all compile create-types",
+    "ganache": "ganache --wallet.seed la-vita-è-bella"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.6.0",

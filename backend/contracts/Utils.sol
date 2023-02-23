@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "truffle/console.sol";
-
 library Utils {
     function getRandomItemFromArray(string[] memory items)
         public

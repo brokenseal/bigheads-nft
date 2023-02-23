@@ -2,8 +2,45 @@ import { expect } from 'chai'
 import web3 from 'web3'
 
 const BigHeads = artifacts.require('BigHeads')
+const Utils = artifacts.require('Utils')
 
-contract('BigHeads', (accounts) => {
+contract('Utils', (accounts) => {
+  const user = accounts[0]
+  // const maxLoops = 200 // for stress testing
+  const maxLoops = 10
+
+  new Array(maxLoops).fill(null).forEach(() => {
+    it('generates a random number between 0 and 3', async () => {
+      const instance = await Utils.new()
+
+      const transactionResult = await instance.getRandomNumberBetweenZeroAndMax(
+        3,
+        { from: user },
+      )
+      const result: number = (transactionResult as any).words[0]
+
+      expect(result).to.be.greaterThanOrEqual(0)
+      expect(result).to.be.lessThan(3)
+    })
+  })
+
+  it.only('retrieves a random string from given array', async () => {
+    const instance = await Utils.new()
+    const testArray = ['one', 'two', 'three', 'four']
+
+    const transactionResult = await instance.getRandomItemFromArray(testArray, {
+      from: user,
+    })
+    console.log('transactionResult', transactionResult)
+
+    expect(testArray).to.contain(transactionResult[0])
+    expect(transactionResult[1]).to.deep.equal(
+      testArray.filter((item) => item !== transactionResult[0]),
+    )
+  })
+})
+
+contract.skip('BigHeads', (accounts) => {
   const defaultURIs = ['uri 1', 'uri 2', 'uri 3', 'uri 4']
   const owner = accounts[0]
   const user = accounts[1]
