@@ -6,39 +6,58 @@ export function useHome() {
   const { state, dispatch } = useAppState()
   const ethContextState = useEth()
 
-  const handleMintedNftUpdate = useCallback(async () => {
-    const contract = ethContextState?.eth?.contract
+  const contract = ethContextState?.eth?.contract
+  const eth = ethContextState?.eth
+  const account = eth?.accounts[0]
+  const getBalance = eth?.web3.eth.getBalance
 
-    if (!contract) {
+  const handleError = useCallback(
+    (error: Error) => dispatch({ type: 'error', payload: error }),
+    [dispatch],
+  )
+
+  const handleMintedNftUpdate = useCallback(() => {
+    if (!contract || !account) {
+      handleError(new Error('No contract available or account available'))
       return
     }
 
-    const minted: string[] = await contract.methods
-      .getMinted()
-      .call({ from: ethContextState?.eth?.accounts[0] })
+    handleGetAvailableCount()
 
-    dispatch({
-      type: 'update-minted-nfts',
-      payload: minted,
-    })
-  }, [ethContextState?.eth?.contract, ethContextState?.eth?.accounts, dispatch])
+    contract.methods
+      .getMinted()
+      .call({ from: account })
+      .then((minted: string[]) => {
+        dispatch({ type: 'update-minted-nfts', payload: minted })
+      })
+      .catch(handleError)
+  }, [contract, account, dispatch, handleError])
+
+  const handleGetAvailableCount = useCallback(() => {
+    if (!contract || !account) {
+      handleError(new Error('No contract available or account available'))
+      return
+    }
+
+    contract.methods
+      .getAvailableCount()
+      .call({ from: account })
+      .then((count: string) => {
+        dispatch({ type: 'update-available-count', payload: Number(count) })
+      })
+      .catch(handleError)
+  }, [contract, account, dispatch, handleError])
 
   const handleUpdateBalance = useCallback(() => {
-    ethContextState?.eth?.web3.eth
-      .getBalance(ethContextState?.eth.accounts[0])
-      .then((balance) =>
-        dispatch({
-          type: 'update-balance',
-          payload: balance,
-        }),
-      )
-      .catch((error: Error) =>
-        dispatch({
-          type: 'error',
-          payload: error,
-        }),
-      )
-  }, [dispatch, ethContextState?.eth])
+    if (!account || !getBalance) {
+      handleError(new Error('No account available'))
+      return
+    }
+
+    getBalance(account)
+      .then((balance) => dispatch({ type: 'update-balance', payload: balance }))
+      .catch(handleError)
+  }, [account, getBalance, dispatch, handleError])
 
   useEffect(() => {
     handleUpdateBalance()
@@ -53,7 +72,13 @@ export function useHome() {
       ...state,
       handleUpdateBalance,
       handleMintedNftUpdate,
+      handleGetAvailableCount,
     }),
-    [state, handleUpdateBalance, handleMintedNftUpdate],
+    [
+      state,
+      handleUpdateBalance,
+      handleMintedNftUpdate,
+      handleGetAvailableCount,
+    ],
   )
 }

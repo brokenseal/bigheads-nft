@@ -8,8 +8,13 @@ import { formatWeiValue } from "./utils";
 
 export function Dashboard() {
   const ethContextState = useEth();
-  const { minted, currentBalance, handleUpdateBalance, handleMintedNftUpdate } =
-    useHome();
+  const {
+    minted,
+    currentBalance,
+    availableCount,
+    handleUpdateBalance,
+    handleMintedNftUpdate,
+  } = useHome();
   const formattedBalance = useMemo(() => {
     if (currentBalance === undefined || !ethContextState?.eth?.web3) {
       return "Loading...";
@@ -46,6 +51,7 @@ export function Dashboard() {
             <ArrowPathIcon className="w-6 h-6 text-blue-500" />
           </button>
         </p>
+        <p className="flex flex-row">Available count: {availableCount}</p>
       </div>
       <div className="rounded-lg border-4 border-solid border-gray-200 p-4">
         <div className="grid grid-cols-4">
@@ -53,7 +59,7 @@ export function Dashboard() {
             // FIXME: index used as tokenId is not correct
             <NFTImage key={index} uri={uri} tokenId={index} />
           ))}
-          <MintCard onMint={handleMintedNftUpdate} />
+          {availableCount !== 0 && <MintCard onMint={handleMintedNftUpdate} />}
         </div>
       </div>
     </>

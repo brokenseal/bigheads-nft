@@ -18,12 +18,22 @@ library Utils {
 
         string[] memory newItems = new string[](itemsLength - 1);
 
+        bool found = false;
+
         for (uint256 index = 0; index < itemsLength; index++) {
+            string memory currentItem = items[index];
+
             if (randomIndex == index) {
-                result = items[index];
-                break;
+                found = true;
+                result = currentItem;
             } else {
-                newItems[index] = items[index];
+                uint256 newItemsIndex = index;
+
+                if (found) {
+                    newItemsIndex = index - 1;
+                }
+
+                newItems[newItemsIndex] = currentItem;
             }
         }
 
@@ -40,6 +50,7 @@ library Utils {
                 abi.encodePacked(
                     block.timestamp +
                         block.difficulty +
+                        // block.prevrandao + // TODO: test this one
                         ((
                             uint256(keccak256(abi.encodePacked(block.coinbase)))
                         ) / (block.timestamp)) +

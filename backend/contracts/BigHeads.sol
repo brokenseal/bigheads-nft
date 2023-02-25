@@ -6,8 +6,6 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-import "truffle/console.sol";
-
 import "./Utils.sol";
 
 contract BigHeads is ERC721, ERC721URIStorage, Ownable {
@@ -75,15 +73,6 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         (string memory uri, string[] memory newAvailableTokens) = Utils
             .getRandomItemFromArray(availableTokenURIs);
 
-        console.log("minted! 1");
-        console.log(uri);
-        for (uint256 i = 0; i < newAvailableTokens.length; i++) {
-            console.log(newAvailableTokens[i]);
-        }
-        console.log(
-            "---------------------------------------------------------------"
-        );
-
         availableTokenURIs = newAvailableTokens;
         minted.push(uri);
 
@@ -95,5 +84,9 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
 
     function getMinted() public view returns (string[] memory) {
         return minted;
+    }
+
+    function getAvailableCount() public view returns (uint) {
+        return availableTokenURIs.length;
     }
 }
