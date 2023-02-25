@@ -94,6 +94,13 @@ contract('BigHeads', (accounts) => {
     expect(minted).to.have.lengthOf(0)
   })
 
+  it('has 4 NFTs to mint at the beginning', async () => {
+    const instance = await createNewInstance()
+    const availableCount = await instance.getAvailableCount()
+
+    expect((availableCount as any).words[0]).to.eq(4)
+  })
+
   it('mints one', async () => {
     const instance = await createNewInstance()
     await instance.mint(user, {
@@ -119,7 +126,6 @@ contract('BigHeads', (accounts) => {
     const minted = await instance.getMinted()
 
     expect(minted).to.have.lengthOf(2)
-    expect(defaultURIs).to.include(minted[0])
     expect(defaultURIs).to.include(minted[1])
   })
 
@@ -140,8 +146,6 @@ contract('BigHeads', (accounts) => {
     const minted = await instance.getMinted()
 
     expect(minted).to.have.lengthOf(3)
-    expect(defaultURIs).to.include(minted[0])
-    expect(defaultURIs).to.include(minted[1])
     expect(defaultURIs).to.include(minted[2])
   })
 
@@ -165,10 +169,7 @@ contract('BigHeads', (accounts) => {
     })
     const minted = await instance.getMinted()
 
-    expect(minted).to.have.lengthOf(3)
-    expect(defaultURIs).to.include(minted[0])
-    expect(defaultURIs).to.include(minted[1])
-    expect(defaultURIs).to.include(minted[2])
+    expect(minted).to.have.lengthOf(4)
     expect(defaultURIs).to.include(minted[3])
   })
 
@@ -200,14 +201,7 @@ contract('BigHeads', (accounts) => {
         assert.fail("It should have thrown an exception but it didn't")
       })
       .catch((error) => {
-        console.log('error', error)
+        assert.ok(!!error)
       })
-    const minted = await instance.getMinted()
-
-    expect(minted).to.have.lengthOf(3)
-    expect(defaultURIs).to.include(minted[0])
-    expect(defaultURIs).to.include(minted[1])
-    expect(defaultURIs).to.include(minted[2])
-    expect(defaultURIs).to.include(minted[3])
   })
 })

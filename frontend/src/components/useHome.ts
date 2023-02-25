@@ -16,6 +16,21 @@ export function useHome() {
     [dispatch],
   )
 
+  const handleGetAvailableCount = useCallback(() => {
+    if (!contract || !account) {
+      handleError(new Error('No contract available or account available'))
+      return
+    }
+
+    contract.methods
+      .getAvailableCount()
+      .call({ from: account })
+      .then((count: string) => {
+        dispatch({ type: 'update-available-count', payload: Number(count) })
+      })
+      .catch(handleError)
+  }, [contract, account, dispatch, handleError])
+
   const handleMintedNftUpdate = useCallback(() => {
     if (!contract || !account) {
       handleError(new Error('No contract available or account available'))
@@ -31,22 +46,7 @@ export function useHome() {
         dispatch({ type: 'update-minted-nfts', payload: minted })
       })
       .catch(handleError)
-  }, [contract, account, dispatch, handleError])
-
-  const handleGetAvailableCount = useCallback(() => {
-    if (!contract || !account) {
-      handleError(new Error('No contract available or account available'))
-      return
-    }
-
-    contract.methods
-      .getAvailableCount()
-      .call({ from: account })
-      .then((count: string) => {
-        dispatch({ type: 'update-available-count', payload: Number(count) })
-      })
-      .catch(handleError)
-  }, [contract, account, dispatch, handleError])
+  }, [contract, account, dispatch, handleError, handleGetAvailableCount])
 
   const handleUpdateBalance = useCallback(() => {
     if (!account || !getBalance) {
