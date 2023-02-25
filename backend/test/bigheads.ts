@@ -103,6 +103,7 @@ contract('BigHeads', (accounts) => {
 
   it('mints one', async () => {
     const instance = await createNewInstance()
+
     await instance.mint(user, {
       from: user,
       value: web3.utils.toWei('0.01', 'ether'),
@@ -115,14 +116,13 @@ contract('BigHeads', (accounts) => {
 
   it('mints two', async () => {
     const instance = await createNewInstance()
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
+
+    for (const _ in [1, 2]) {
+      await instance.mint(user, {
+        from: user,
+        value: web3.utils.toWei('0.01', 'ether'),
+      })
+    }
     const minted = await instance.getMinted()
 
     expect(minted).to.have.lengthOf(2)
@@ -131,18 +131,13 @@ contract('BigHeads', (accounts) => {
 
   it('mints three', async () => {
     const instance = await createNewInstance()
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
+
+    for (const _ in [1, 2, 3]) {
+      await instance.mint(user, {
+        from: user,
+        value: web3.utils.toWei('0.01', 'ether'),
+      })
+    }
     const minted = await instance.getMinted()
 
     expect(minted).to.have.lengthOf(3)
@@ -151,22 +146,14 @@ contract('BigHeads', (accounts) => {
 
   it('mints four', async () => {
     const instance = await createNewInstance()
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
-    await instance.mint(user, {
-      from: user,
-      value: web3.utils.toWei('0.01', 'ether'),
-    })
+
+    for (const _ in [1, 2, 3, 4]) {
+      await instance.mint(user, {
+        from: user,
+        value: web3.utils.toWei('0.01', 'ether'),
+      })
+    }
+
     const minted = await instance.getMinted()
 
     expect(minted).to.have.lengthOf(4)
