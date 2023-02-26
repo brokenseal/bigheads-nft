@@ -17,7 +17,7 @@ import { baseUrl, createClient, uploadFile } from './ipfs.js'
 import { getFilePath } from './utils.js'
 
 yargs(hideBin(process.argv))
-  .command('generate', 'Generated bigheads', () => {
+  .command('generate', 'Generate bigheads', () => {
     const { container } = prepareDom()
 
     const {
@@ -37,24 +37,6 @@ yargs(hideBin(process.argv))
   .command('save-to-file', 'Save generated SVGs to file system', () => {
     saveSvgToFiles()
   })
-  .command(
-    'save-to-file-frontend',
-    'Move generated SVGs to frontend workspace',
-    () => {
-      const dirName = getFilePath(import.meta.url)
-      saveSvgToFiles(
-        join(
-          dirName,
-          '..',
-          '..',
-          'frontend',
-          'public',
-          'bigheads',
-          'generated',
-        ),
-      )
-    },
-  )
   .command('upload', 'Upload generated bigheads to IPFS', () => {
     const svgFileNameContentListPath = join(generatedDirPath, `svgs.json`)
     const svgFile = readFileSync(svgFileNameContentListPath)

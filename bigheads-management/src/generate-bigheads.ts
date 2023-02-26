@@ -221,13 +221,14 @@ export const prepareDom = () => {
 
 export const removeGeneratedFolder = () => {
   rmSync(generatedDirPath, { recursive: true, force: true })
-  mkdirSync(generatedDirPath)
 }
 
 export const createGeneratedFolder = () => {
-  rmSync(generatedDirPath, { recursive: true, force: true })
-  mkdirSync(generatedDirPath)
-  mkdirSync(join(generatedDirPath, 'files'))
+  const toGenerate = [generatedDirPath, join(generatedDirPath, 'files')]
+  toGenerate.forEach((path) => {
+    console.log('Created folder: ', path)
+    mkdirSync(path)
+  })
 }
 
 export const generateBigHeadSvgs = (
