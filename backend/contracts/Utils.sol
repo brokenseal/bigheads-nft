@@ -7,13 +7,14 @@ library Utils {
         view
         returns (string memory, string[] memory)
     {
-        string memory result = "";
         uint256 itemsLength = items.length;
 
-        if (itemsLength == 0) {
-            return ("", new string[](0));
-        }
+        require(
+            itemsLength == 0,
+            "Unable to retrieve an item from an empty list"
+        );
 
+        string memory result = "";
         uint256 randomIndex = getRandomNumberBetweenZeroAndMax(itemsLength);
 
         string[] memory newItems = new string[](itemsLength - 1);

@@ -52,6 +52,9 @@ export function Dashboard() {
           </button>
         </p>
         <p className="flex flex-row">Available count: {availableCount}</p>
+        {availableCount === 0 && (
+          <p className="flex flex-row">No more NFTs to mint available</p>
+        )}
       </div>
       <div className="rounded-lg border-4 border-solid border-gray-200 p-4">
         <div className="grid grid-cols-4">

@@ -9,22 +9,21 @@ contract('Utils', (accounts) => {
   // const maxLoops = 200 // for stress testing
   const maxLoops = 10
 
-  new Array(maxLoops).fill(null).forEach(() => {
-    it('generates a random number between 0 and 3', async () => {
-      const instance = await Utils.new()
+  it('retrieves a random string from given array', async () => {
+    const instance = await Utils.new()
+    const testArray = ['one', 'two', 'three', 'four']
 
-      const transactionResult = await instance.getRandomNumberBetweenZeroAndMax(
-        3,
-        { from: user },
-      )
-      const result: number = (transactionResult as any).words[0]
-
-      expect(result).to.be.greaterThanOrEqual(0)
-      expect(result).to.be.lessThan(3)
+    const transactionResult = await instance.getRandomItemFromArray(testArray, {
+      from: user,
     })
+
+    expect(testArray).to.contain(transactionResult[0])
+    expect(transactionResult[1]).to.deep.equal(
+      testArray.filter((item) => item !== transactionResult[0]),
+    )
   })
 
-  it('retrieves a random string from given array', async () => {
+  it('returns an empty', async () => {
     const instance = await Utils.new()
     const testArray = ['one', 'two', 'three', 'four']
 
