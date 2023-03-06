@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+// import "truffle/console.sol";
+
 import "./Utils.sol";
 
 contract BigHeads is ERC721, ERC721URIStorage, Ownable {
@@ -20,28 +22,27 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         availableTokenURIs = tokenURIs;
     }
 
-    // function _baseURI() internal pure override returns (string memory) {
-    //     return "ipfs://";
-    // }
-
-    function safeMint(address recipient)
-        public
-        onlyOwner
-        returns (uint256, string memory)
-    {
-        return _mint(recipient);
+    function _baseURI() internal pure override returns (string memory) {
+        return "https://bigheads-nft.infura-ipfs.io/ipfs/";
     }
 
-    // The following functions are overrides required by Solidity.
-
-    // istanbul ignore next
+    // Override required by Solidity.
+    // Currently not exposed to the external world.
     function _burn(uint256 tokenId)
         internal
         override(ERC721, ERC721URIStorage)
     {
+        address tokenOwner = ownerOf(tokenId);
+
+        require(
+            msg.sender == tokenOwner,
+            "Only token owner can burn the token"
+        );
+
         super._burn(tokenId);
     }
 
+    // Override required by Solidity.
     function tokenURI(uint256 tokenId)
         public
         view
@@ -60,11 +61,6 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
             msg.value >= 0.01 ether,
             "Minimum amount of ether to mint: 0.01"
         );
-
-        return _mint(recipient);
-    }
-
-    function _mint(address recipient) private returns (uint256, string memory) {
         require(availableTokenURIs.length != 0, "All NFTs have been minted!");
 
         uint256 newItemId = tokenIdCounter.current();
@@ -76,7 +72,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         availableTokenURIs = newAvailableTokens;
         minted.push(uri);
 
-        _mint(recipient, newItemId);
+        _safeMint(recipient, newItemId);
         _setTokenURI(newItemId, uri);
 
         return (newItemId, uri);
@@ -86,7 +82,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         return minted;
     }
 
-    function getAvailableCount() public view returns (uint) {
+    function getAvailableCount() public view returns (uint256) {
         return availableTokenURIs.length;
     }
 }

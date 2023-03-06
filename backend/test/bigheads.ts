@@ -6,8 +6,6 @@ const Utils = artifacts.require('Utils')
 
 contract('Utils', (accounts) => {
   const user = accounts[0]
-  // const maxLoops = 200 // for stress testing
-  const maxLoops = 10
 
   it('retrieves a random string from given array', async () => {
     const instance = await Utils.new()

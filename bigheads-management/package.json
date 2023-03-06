@@ -1,7 +1,8 @@
 {
   "name": "@bigheads-nft/bigheads-management",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/commands.ts",
+  "types": "./src/types.ts",
   "type": "module",
   "scripts": {
     "generate": "ts-node --esm ./src/commands.ts generate",

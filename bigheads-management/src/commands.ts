@@ -14,6 +14,7 @@ import {
   saveToFileStatisticsAndTraits,
 } from './generate-bigheads.js'
 import { baseUrl, createClient, uploadFile } from './ipfs.js'
+import { UploadResult } from './types.js'
 import { getFilePath } from './utils.js'
 
 yargs(hideBin(process.argv))
@@ -48,9 +49,17 @@ yargs(hideBin(process.argv))
     Promise.all(
       svgFileNameContentList.map(async ({ content, fileName, path }) => {
         const ipfsPath: AddResult = await uploadFile(client, content)
-        const fullPath = `${baseUrl}/ipfs/${ipfsPath.path}`
+        const baseUri = `${baseUrl}/ipfs/`
+        const uniqueUriId = ipfsPath.path
+        const fullPath = `${baseUri}${uniqueUriId}`
 
-        const uploadResult: UploadResult = { ipfsPath, fileName, fullPath }
+        const uploadResult: UploadResult = {
+          ipfsPath,
+          fileName,
+          fullPath,
+          uniqueUriId,
+          baseUri,
+        }
         return uploadResult
       }),
     ).then((svgFilePaths) => {
@@ -63,5 +72,3 @@ yargs(hideBin(process.argv))
     })
   })
   .parse()
-
-type UploadResult = { ipfsPath: AddResult; fileName: string; fullPath: string }

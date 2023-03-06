@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import "truffle/console.sol";
+
 library Utils {
     function getRandomItemFromArray(string[] memory items)
         public
@@ -10,7 +12,7 @@ library Utils {
         uint256 itemsLength = items.length;
 
         require(
-            itemsLength == 0,
+            itemsLength != 0,
             "Unable to retrieve an item from an empty list"
         );
 

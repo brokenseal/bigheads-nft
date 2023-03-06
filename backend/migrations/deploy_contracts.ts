@@ -1,9 +1,8 @@
+import { UploadResult } from '@bigheads-nft/bigheads-management'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { AddResult } from 'ipfs-core-types/dist/src/root.js'
 
 type Network = 'development' | 'kovan' | 'mainnet'
-type UploadResult = { ipfsPath: AddResult; fileName: string; fullPath: string }
 
 module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
   return async (
@@ -30,7 +29,7 @@ module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
     )
     const uploaded: UploadResult[] = JSON.parse(uploadedFile.toString())
     const existingURIs = uploaded.map((data) => {
-      return data.fullPath
+      return data.uniqueUriId
     })
 
     await deployer.deploy(BigHeads, existingURIs)

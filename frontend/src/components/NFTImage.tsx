@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useEth } from "../eth-context";
 import { Card, CardBody, CardFooter } from "./Card";
 
-type NFTImageProps = { uri: string; tokenId: number };
+type NFTImageProps = { baseUri?: string; uri: string; tokenId: number };
 
-export function NFTImage({ uri, tokenId }: NFTImageProps) {
+export function NFTImage({ tokenId, baseUri, uri }: NFTImageProps) {
   const title = `BigHead ${tokenId}`;
   const ethContextState = useEth();
   const [isOwner, setIsOwner] = useState(false);
@@ -28,11 +28,13 @@ export function NFTImage({ uri, tokenId }: NFTImageProps) {
       });
   }, [ethContextState?.eth, tokenId]);
 
+  const url = `${baseUri || ""}${uri}`;
+
   return (
     <Card>
       <CardFooter>BigHead #{tokenId}</CardFooter>
       <CardBody>
-        <img src={uri} title={title} alt={title} className="max-width" />
+        <img src={url} title={title} alt={title} className="max-width" />
       </CardBody>
       {isOwner && <CardFooter invisible>You own this one!</CardFooter>}
     </Card>
