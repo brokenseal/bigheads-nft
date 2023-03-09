@@ -5,7 +5,7 @@ export type BaseAction<T, P> = {
 export type UpdateBalanceAction = BaseAction<'update-balance', string>
 export type UpdateBigHeadsCountAction = BaseAction<
   'update-minted-nfts',
-  string[]
+  number[]
 >
 export type UpdateBigHeadsAvailableCountAction = BaseAction<
   'update-available-count',
@@ -23,16 +23,14 @@ export type Action =
 export type AppState = {
   currentBalance?: string
   errors: Error[]
-  minted: string[]
+  minted: number[]
   availableCount: number
-  baseUri?: string
 }
 
 const initialState: AppState = {
   errors: [],
   minted: [],
   availableCount: 0,
-  baseUri: undefined,
 }
 
 const reducer = (state: AppState, action: Action): AppState => {
@@ -45,8 +43,6 @@ const reducer = (state: AppState, action: Action): AppState => {
       return { ...state, currentBalance: payload }
     case 'update-minted-nfts':
       return { ...state, minted: payload }
-    case 'update-base-uri':
-      return { ...state, baseUri: payload }
     case 'update-available-count':
       return { ...state, availableCount: payload }
     default:

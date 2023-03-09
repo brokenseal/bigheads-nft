@@ -12,13 +12,16 @@ export function useHome() {
   const getBalance = eth?.web3.eth.getBalance
 
   const handleError = useCallback(
-    (error: Error) => dispatch({ type: 'error', payload: error }),
+    (error: Error) => {
+      console.error(error)
+      dispatch({ type: 'error', payload: error })
+    },
     [dispatch],
   )
 
   const handleGetAvailableCount = useCallback(() => {
     if (!contract || !account) {
-      handleError(new Error('No contract available or account available'))
+      // handleError(new Error('No contract available or account available'))
       return
     }
 
@@ -31,26 +34,29 @@ export function useHome() {
       .catch(handleError)
   }, [contract, account, dispatch, handleError])
 
-  const handleMintedNftUpdate = useCallback(() => {
-    if (!contract || !account) {
-      handleError(new Error('No contract available or account available'))
-      return
-    }
+  const handleMintedNftUpdate = useCallback(
+    (error?: unknown) => {
+      if (!contract || !account) {
+        // handleError(new Error('No contract available or account available'))
+        return
+      }
 
-    handleGetAvailableCount()
+      handleGetAvailableCount()
 
-    contract.methods
-      .getMinted()
-      .call({ from: account })
-      .then((minted: string[]) => {
-        dispatch({ type: 'update-minted-nfts', payload: minted })
-      })
-      .catch(handleError)
-  }, [contract, account, dispatch, handleError, handleGetAvailableCount])
+      contract.methods
+        .getMinted()
+        .call({ from: account })
+        .then((minted: number[]) => {
+          dispatch({ type: 'update-minted-nfts', payload: minted })
+        })
+        .catch(handleError)
+    },
+    [contract, account, dispatch, handleError, handleGetAvailableCount],
+  )
 
   const handleUpdateBalance = useCallback(() => {
     if (!account || !getBalance) {
-      handleError(new Error('No account available'))
+      // handleError(new Error('No account available'))
       return
     }
 
@@ -67,18 +73,46 @@ export function useHome() {
     handleMintedNftUpdate()
   }, [handleMintedNftUpdate])
 
+  const handleMint = useCallback(
+    (error?: unknown) => {
+      handleMintedNftUpdate()
+
+      if (error instanceof Error) {
+        handleError(error)
+      } else if (isSupportedError(error)) {
+        handleError(new Error(error as any))
+      } else {
+        handleError(new Error(`An unknown error occurred; ${error}`))
+      }
+    },
+    [handleMintedNftUpdate, handleError],
+  )
+
   return useMemo(
     () => ({
       ...state,
+      handleMint,
       handleUpdateBalance,
       handleMintedNftUpdate,
       handleGetAvailableCount,
     }),
     [
       state,
+      handleMint,
       handleUpdateBalance,
       handleMintedNftUpdate,
       handleGetAvailableCount,
     ],
+  )
+}
+
+function isSupportedError(
+  error: unknown,
+): error is { code: number; message: string; stack: string } {
+  return (
+    !!error &&
+    error.hasOwnProperty('code') &&
+    error.hasOwnProperty('message') &&
+    error.hasOwnProperty('stack')
   )
 }

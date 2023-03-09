@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useEth } from "../eth-context";
 import { Card, CardBody, CardFooter } from "./Card";
 
-type NFTImageProps = { baseUri?: string; uri: string; tokenId: number };
+type NFTImageProps = { tokenId: number };
 
-export function NFTImage({ tokenId, baseUri, uri }: NFTImageProps) {
+export function NFTImage({ tokenId }: NFTImageProps) {
   const title = `BigHead ${tokenId}`;
   const ethContextState = useEth();
   const [isOwner, setIsOwner] = useState(false);
+  const [tokenUri, setTokenUri] = useState("");
 
   useEffect(() => {
     const contract = ethContextState?.eth?.contract;
@@ -26,15 +27,23 @@ export function NFTImage({ tokenId, baseUri, uri }: NFTImageProps) {
       .catch((_error: unknown) => {
         // TODO: notify the user
       });
-  }, [ethContextState?.eth, tokenId]);
 
-  const url = `${baseUri || ""}${uri}`;
+    contract.methods
+      .tokenURI(tokenId)
+      .call({ from: currentAccount })
+      .then((tokenUri: string) => {
+        setTokenUri(tokenUri);
+      })
+      .catch((_error: unknown) => {
+        // TODO: notify the user
+      });
+  }, [ethContextState?.eth, tokenId]);
 
   return (
     <Card>
       <CardFooter>BigHead #{tokenId}</CardFooter>
       <CardBody>
-        <img src={url} title={title} alt={title} className="max-width" />
+        <img src={tokenUri} title={title} alt={title} className="max-width" />
       </CardBody>
       {isOwner && <CardFooter invisible>You own this one!</CardFooter>}
     </Card>

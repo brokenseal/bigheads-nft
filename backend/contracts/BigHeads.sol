@@ -15,7 +15,7 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
 
     Counters.Counter private tokenIdCounter;
 
-    string[] private minted;
+    uint256[] private minted;
     string[] private availableTokenURIs;
 
     constructor(string[] memory tokenURIs) ERC721("BigHeads", "BIGH") {
@@ -63,22 +63,22 @@ contract BigHeads is ERC721, ERC721URIStorage, Ownable {
         );
         require(availableTokenURIs.length != 0, "All NFTs have been minted!");
 
-        uint256 newItemId = tokenIdCounter.current();
+        uint256 newTokenId = tokenIdCounter.current();
         tokenIdCounter.increment();
 
         (string memory uri, string[] memory newAvailableTokens) = Utils
             .getRandomItemFromArray(availableTokenURIs);
 
         availableTokenURIs = newAvailableTokens;
-        minted.push(uri);
+        minted.push(newTokenId);
 
-        _safeMint(recipient, newItemId);
-        _setTokenURI(newItemId, uri);
+        _safeMint(recipient, newTokenId);
+        _setTokenURI(newTokenId, uri);
 
-        return (newItemId, uri);
+        return (newTokenId, uri);
     }
 
-    function getMinted() public view returns (string[] memory) {
+    function getMinted() public view returns (uint256[] memory) {
         return minted;
     }
 

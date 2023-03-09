@@ -5,39 +5,10 @@ import { TransactionReceipt } from "web3-core";
 import { useEth } from "../eth-context";
 import { Card, CardBody, CardFooter } from "./Card";
 
-type MintCardProps = { onMint: () => void };
+type MintCardProps = { onMint: (error?: unknown) => void };
 
 export function MintCard({ onMint }: MintCardProps) {
-  const ethContextState = useEth();
-
-  const mintNewBigHead = useCallback(async () => {
-    const account = ethContextState?.eth?.accounts[0];
-    const contract = ethContextState?.eth?.contract;
-
-    if (!account || !contract) {
-      // TODO: inform the user
-      return;
-    }
-
-    const transactionReceipt: TransactionReceipt | undefined =
-      await contract.methods.mint(account).send({
-        from: account,
-        value: Web3.utils.toWei("0.01"),
-      });
-
-    const mintTransactionResult = transactionReceipt?.events?.Transfer
-      .returnValues as {
-      from: string;
-      to: string;
-      tokenId: string;
-    };
-
-    if (transactionReceipt && mintTransactionResult) {
-      onMint();
-    } else {
-      // TODO: inform the user
-    }
-  }, [ethContextState?.eth?.accounts, ethContextState?.eth?.contract, onMint]);
+  const { mintNewBigHead } = useMintCard({ onMint });
 
   return (
     <Card>
@@ -49,4 +20,47 @@ export function MintCard({ onMint }: MintCardProps) {
       <CardFooter invisible>Mint one!</CardFooter>
     </Card>
   );
+}
+
+function useMintCard({ onMint }: MintCardProps) {
+  const ethContextState = useEth();
+
+  const mintNewBigHead = useCallback(async () => {
+    const account = ethContextState?.eth?.accounts[0];
+    const contract = ethContextState?.eth?.contract;
+
+    if (!account || !contract) {
+      // TODO: inform the user
+      return;
+    }
+    let transactionReceipt: TransactionReceipt | undefined;
+
+    try {
+      transactionReceipt = await contract.methods.mint(account).send({
+        // transactionReceipt = await contract.methods.mint(account).call({
+        from: account,
+        value: Web3.utils.toWei("0.01"),
+        gasLimit: 6_721_975,
+      });
+    } catch (error) {
+      onMint(error);
+    }
+
+    if (transactionReceipt) {
+      const mintTransactionResult = transactionReceipt?.events?.Transfer
+        .returnValues as {
+        from: string;
+        to: string;
+        tokenId: string;
+      };
+
+      if (transactionReceipt && mintTransactionResult) {
+        onMint();
+      } else {
+        onMint(new Error("An unknown error happened while minting"));
+      }
+    }
+  }, [ethContextState?.eth?.accounts, ethContextState?.eth?.contract, onMint]);
+
+  return { mintNewBigHead };
 }

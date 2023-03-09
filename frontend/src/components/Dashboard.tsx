@@ -10,9 +10,9 @@ export function Dashboard() {
   const ethContextState = useEth();
   const {
     minted,
-    baseUri,
     currentBalance,
     availableCount,
+    handleMint,
     handleUpdateBalance,
     handleMintedNftUpdate,
   } = useHome();
@@ -59,11 +59,11 @@ export function Dashboard() {
       </div>
       <div className="rounded-lg border-4 border-solid border-gray-200 p-4">
         <div className="grid grid-cols-4">
-          {minted.map((uri, index) => (
+          {minted.map((_uri, index) => (
             // FIXME: index used as tokenId is not correct
-            <NFTImage key={index} baseUri={baseUri} uri={uri} tokenId={index} />
+            <NFTImage key={index} tokenId={index} />
           ))}
-          {availableCount !== 0 && <MintCard onMint={handleMintedNftUpdate} />}
+          {availableCount !== 0 && <MintCard onMint={handleMint} />}
         </div>
       </div>
     </>
