@@ -20,7 +20,8 @@
     "prepare": "npm-run-all compile create-types",
     "deploy": "npm-run-all generate-and-upload migrate",
     "test": "npm run test -w backend",
-    "ganache": "npm run test -w ganache",
+    "update": "npm-run-all prepare deploy",
+    "ganache": "npm run ganache -w backend",
     "start": "npm run start -w frontend"
   },
   "repository": {

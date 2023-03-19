@@ -48,7 +48,7 @@ module.exports = {
   mocha: {
     // timeout: 100000
     slow: 1000,
-    reporter: 'nyan',
+    // reporter: 'nyan',
   },
   /**
    * Networks define how you connect to your ethereum client and let you set the
