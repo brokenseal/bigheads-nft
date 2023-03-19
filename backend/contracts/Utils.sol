@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "truffle/console.sol";
-
 library Utils {
     function getRandomItemFromArrayOld(
         string[] memory items
@@ -66,14 +64,6 @@ library Utils {
         // move the cursor one position to the left
         uint newCursor = cursor == 0 ? cursor : cursor - 1;
 
-        // console.log("------------------------> cursor: ", cursor);
-        // console.log("------------------------> newCursor: ", newCursor);
-        // console.log("------------------------> randomIndex: ", randomIndex);
-        // console.log("------------------------> result: ", result);
-
-        for (uint i = 0; i < items.length; i++) {
-            console.log("------------------------> items: ", i, items[i]);
-        }
         return (result, items, newCursor);
     }
 
